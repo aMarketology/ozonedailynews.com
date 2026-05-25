@@ -1,0 +1,23 @@
+{
+  "slug": "tech-news-87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026",
+  "url": "https://www.ozonenetwork.news/tech/news/87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026",
+  "title": "87% of AI Agent Pull Requests Introduce Security Flaws",
+  "subtitle": "DryRun Security tested Claude, Codex, and Gemini on real apps. 26 of 30 PRs had at least one high-severity flaw.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-03-12T00:00:00Z",
+  "publish_date": "March 12, 2026",
+  "author_name": "Alfred Minter",
+  "author_slug": "alfred-minter",
+  "read_time": "6 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Code on screen with security lock icon",
+  "tags": ["AI Security", "DryRun Security", "Claude", "Codex", "Gemini", "Agentic AI", "Developer Tools"],
+  "content_html": "<p>A new DryRun Security report tested Claude, Codex, and Gemini building real apps autonomously. 26 of 30 AI-generated pull requests introduced at least one high-severity security flaw.</p><h2>Key Findings</h2><p>The report found that 87 percent of agentic AI coding sessions produced code with critical vulnerabilities including SQL injection, insecure deserialization, and hardcoded credentials.</p>",
+  "metadata": {
+    "title": "87% of AI Agent Pull Requests Introduce Security Flaws",
+    "description": "A new DryRun Security report tested Claude, Codex, and Gemini building real apps autonomously. 26 of 30 AI-generated pull requests introduced at least one high-severity security flaw.",
+    "keywords": ["AI agent security flaws 2026", "DryRun Security agentic coding report", "87 percent AI pull requests security vulnerabilities"],
+    "alternates": { "canonical": "https://www.ozonenetwork.news/tech/news/87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026" }
+  }
+}

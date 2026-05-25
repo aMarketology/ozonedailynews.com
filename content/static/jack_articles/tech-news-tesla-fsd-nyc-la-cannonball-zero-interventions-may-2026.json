@@ -1,0 +1,23 @@
+{
+  "slug": "tech-news-tesla-fsd-nyc-la-cannonball-zero-interventions-may-2026",
+  "url": "https://www.ozonenetwork.news/tech/news/tesla-fsd-nyc-la-cannonball-zero-interventions-may-2026",
+  "title": "Tesla FSD 14.3.2 | NYC to LA Cannonball Run Zero Interventions 2026",
+  "subtitle": "2,833 miles. 49 hours 55 minutes. Zero human interventions. A new benchmark for autonomous driving.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-05-12T10:00:00Z",
+  "publish_date": "May 12, 2026",
+  "author_name": "Alfred Minter",
+  "author_slug": "alfred-minter",
+  "read_time": "8 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1772171386187-bc14e6cd7804?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Car dashboard displaying autonomous driving interface",
+  "tags": ["Tesla", "FSD", "Self-Driving", "Autonomous Vehicles"],
+  "content_html": "<p>Tesla FSD version 14.3.2 completed the 2,833-mile NYC to LA Cannonball Run in 49 hours 55 minutes with zero human interventions, beating the prior record by 8.5 hours.</p><h2>The Run in Numbers</h2><p>The BLKMDL3 team drove a Tesla Model 3 from the Red Ball Garage in Manhattan to the Portofino Hotel in Redondo Beach without a single driver override or disengagement. The car handled highway merges, overnight driving, and autonomous Supercharger stops.</p><h2>State of Self-Driving in 2026</h2><p>The run does not mean FSD is fully autonomous. Tesla classifies it as SAE Level 2 supervised autonomy. A licensed driver was in the seat and legally responsible. But the zero-intervention result is a meaningful engineering milestone.</p>",
+  "metadata": {
+    "title": "Tesla FSD 14.3.2 | NYC to LA Cannonball Run Zero Interventions 2026",
+    "description": "Tesla FSD version 14.3.2 completes the 2,833-mile NYC to LA Cannonball Run in 49 hours 55 minutes with zero human interventions, beating the prior record by 8.5 hours.",
+    "keywords": ["Tesla FSD NYC to LA", "Tesla Full Self-Driving Cannonball Run 2026", "FSD 14.3.2 zero interventions"],
+    "alternates": { "canonical": "https://www.ozonenetwork.news/tech/news/tesla-fsd-nyc-la-cannonball-zero-interventions-may-2026" }
+  }
+}

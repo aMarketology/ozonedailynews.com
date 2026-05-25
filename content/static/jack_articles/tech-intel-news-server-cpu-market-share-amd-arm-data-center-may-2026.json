@@ -1,0 +1,23 @@
+{
+  "slug": "tech-intel-news-server-cpu-market-share-amd-arm-data-center-may-2026",
+  "url": "https://www.ozonenetwork.news/tech/intel/news/server-cpu-market-share-amd-arm-data-center-may-2026",
+  "title": "Intel Server CPU Share Falls to 54.9% | AMD and Arm Gain",
+  "subtitle": "Intel lost 9.5 percentage points of server CPU market share in Q1 2026. AMD at 27.4%, Arm at 17.7%. Stock fell below $116.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-05-15T14:00:00Z",
+  "publish_date": "May 15, 2026",
+  "author_name": "Alfred Minter",
+  "author_slug": "alfred-minter",
+  "read_time": "7 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Intel computer processor chip macro photography",
+  "tags": ["Intel", "AMD", "Arm Holdings", "Server CPU", "Data Center", "Semiconductors"],
+  "content_html": "<p>Intel server CPU unit share fell from 64.4 percent to 54.9 percent in Q1 2026 as AMD expanded to 27.4 percent and Arm climbed to 17.7 percent. Intel stock dropped below $116 on May 15, its fourth consecutive loss session.</p><h2>UBS Report Confirms the Slide</h2><p>A UBS research note published May 15 cited data from several OEM channel checks confirming the 490 basis point sequential decline in Intel's server unit share. The overall server market grew 19 percent year-over-year, driven by agentic AI infrastructure spending.</p><h2>Coral Rapids on the Horizon</h2><p>Intel's next-generation server CPU platform, Coral Rapids, is expected in late 2026 on the 18A node. Analysts say it represents Intel's best chance to recapture data center share from AMD's EPYC and Arm-based Neoverse platforms.</p>",
+  "metadata": {
+    "title": "Intel Server CPU Share Falls to 54.9% | AMD and Arm Gain",
+    "description": "Intel server CPU unit share fell from 64.4% to 54.9% in Q1 2026 as AMD expanded to 27.4% and Arm climbed to 17.7%. Intel stock dropped below $116 on May 15.",
+    "keywords": ["Intel server CPU market share 2026", "Intel AMD Arm server market share Q1 2026", "Intel stock drop May 2026"],
+    "alternates": { "canonical": "https://www.ozonenetwork.news/tech/intel/news/server-cpu-market-share-amd-arm-data-center-may-2026" }
+  }
+}

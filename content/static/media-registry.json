@@ -1,0 +1,125 @@
+{
+  "_comment": "Centralized media registry. Add topic keys here. Components pull from this via lib/media-registry.ts. YouTube thumbnail format: https://img.youtube.com/vi/{videoId}/maxresdefault.jpg",
+  "gta-6": {
+    "label": "Grand Theft Auto VI",
+    "defaultVideoId": "gta6-trailer-2",
+    "defaultThumbnailId": "gta6-trailer-2",
+    "media": [
+      {
+        "id": "gta6-trailer-1",
+        "videoId": "QdBZExpgErs",
+        "title": "Grand Theft Auto VI | Official Trailer 1",
+        "thumbnailSrc": "https://img.youtube.com/vi/QdBZExpgErs/maxresdefault.jpg",
+        "thumbnailAlt": "GTA 6 Official Trailer 1 — Rockstar Games",
+        "description": "December 5, 2023. Most-viewed gaming trailer in YouTube history at release.",
+        "provider": "youtube",
+        "tags": ["official", "trailer", "reveal", "2023"]
+      },
+      {
+        "id": "gta6-trailer-2",
+        "videoId": "LoMWLfOPiJg",
+        "title": "Grand Theft Auto VI | Official Trailer 2",
+        "thumbnailSrc": "https://img.youtube.com/vi/LoMWLfOPiJg/maxresdefault.jpg",
+        "thumbnailAlt": "GTA 6 Official Trailer 2 — Jason and Lucia, Vice City",
+        "description": "May 2025. Characters named — Jason Duval and Lucia Caminos. Vice City and state of Leonida confirmed.",
+        "provider": "youtube",
+        "tags": ["official", "trailer", "characters", "2025"]
+      }
+    ]
+  },
+  "fortnite": {
+    "label": "Fortnite",
+    "defaultVideoId": "fortnite-chapter-6",
+    "defaultThumbnailId": "fortnite-chapter-6",
+    "media": [
+      {
+        "id": "fortnite-chapter-6",
+        "videoId": "wYqKU2OERUQ",
+        "title": "Fortnite Chapter 6 | Official Launch Trailer",
+        "thumbnailSrc": "https://img.youtube.com/vi/wYqKU2OERUQ/maxresdefault.jpg",
+        "thumbnailAlt": "Fortnite Chapter 6 Season 1 official launch trailer",
+        "description": "Chapter 6 Season 1 launch trailer featuring the Japan-inspired Shogunate map.",
+        "provider": "youtube",
+        "tags": ["official", "trailer", "chapter-6", "season-1"]
+      }
+    ]
+  },
+  "nintendo-switch-2": {
+    "label": "Nintendo Switch 2",
+    "defaultVideoId": "switch2-reveal",
+    "defaultThumbnailId": "switch2-reveal",
+    "media": [
+      {
+        "id": "switch2-reveal",
+        "videoId": "itpAB7hkCqA",
+        "title": "Nintendo Switch 2 | Official Reveal Trailer",
+        "thumbnailSrc": "https://img.youtube.com/vi/itpAB7hkCqA/maxresdefault.jpg",
+        "thumbnailAlt": "Nintendo Switch 2 official reveal trailer",
+        "description": "January 2025. First official look at Nintendo Switch 2 hardware and new Joy-Con design.",
+        "provider": "youtube",
+        "tags": ["official", "reveal", "hardware", "2025"]
+      },
+      {
+        "id": "switch2-direct",
+        "videoId": "sljMJCJFSFw",
+        "title": "Nintendo Switch 2 Direct | Full Presentation April 2025",
+        "thumbnailSrc": "https://img.youtube.com/vi/sljMJCJFSFw/maxresdefault.jpg",
+        "thumbnailAlt": "Nintendo Switch 2 Direct April 2025 full game lineup",
+        "description": "April 2025 Direct. Full game lineup, GameChat, and June 5, 2025 launch date confirmed.",
+        "provider": "youtube",
+        "tags": ["direct", "games", "lineup", "2025"]
+      }
+    ]
+  },
+  "battlefield-6": {
+    "label": "Battlefield 6",
+    "defaultVideoId": "bf6-roadmap-trailer",
+    "defaultThumbnailId": "bf6-roadmap-trailer",
+    "media": [
+      {
+        "id": "bf6-roadmap-trailer",
+        "videoId": "pPhLtirFp7E",
+        "title": "Battlefield 6 | Official 2026 Roadmap Trailer",
+        "thumbnailSrc": "https://img.youtube.com/vi/pPhLtirFp7E/maxresdefault.jpg",
+        "thumbnailAlt": "Battlefield 6 official 2026 roadmap trailer",
+        "description": "Official 2026 roadmap trailer confirming Seasons 3, 4, and 5, naval warfare, and back-to-roots direction.",
+        "provider": "youtube",
+        "tags": ["official", "roadmap", "trailer", "2026"]
+      }
+    ]
+  },
+  "openai": {
+    "label": "OpenAI",
+    "defaultVideoId": "openai-o3-reveal",
+    "defaultThumbnailId": "openai-o3-reveal",
+    "media": [
+      {
+        "id": "openai-o3-reveal",
+        "videoId": "SKBG1sqdyIU",
+        "title": "OpenAI o3 | Official Reveal",
+        "thumbnailSrc": "https://img.youtube.com/vi/SKBG1sqdyIU/maxresdefault.jpg",
+        "thumbnailAlt": "OpenAI o3 official reveal video",
+        "description": "OpenAI reveals o3, their most capable reasoning model.",
+        "provider": "youtube",
+        "tags": ["official", "o3", "reasoning", "reveal"]
+      }
+    ]
+  },
+  "rocket-league": {
+    "label": "Rocket League",
+    "defaultVideoId": "rl-season-1-2026",
+    "defaultThumbnailId": "rl-season-1-2026",
+    "media": [
+      {
+        "id": "rl-season-1-2026",
+        "videoId": "BSL7ggLDPR4",
+        "title": "Rocket League | Season 1 2026 Trailer",
+        "thumbnailSrc": "https://img.youtube.com/vi/BSL7ggLDPR4/maxresdefault.jpg",
+        "thumbnailAlt": "Rocket League Season 1 2026 official trailer",
+        "description": "Rocket League Season 1 2026 cinematic trailer.",
+        "provider": "youtube",
+        "tags": ["official", "season", "trailer", "2026"]
+      }
+    ]
+  }
+}

@@ -4,14 +4,33 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npx ts-node --project tsconfig.scripts.json scripts/validate-public.ts && npx ts-node --project tsconfig.scripts.json scripts/validate-canonicals.ts && npx ts-node --project tsconfig.scripts.json scripts/sync-registry.ts --write",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "alfasa": "npx ts-node --project tsconfig.scripts.json scripts/alfasa-suggest.ts",
+    "wiki:sync": "npx ts-node --project tsconfig.scripts.json scripts/sync-registry.ts",
+    "wiki:publish": "npx ts-node --project tsconfig.scripts.json scripts/alfasa-sentinel.ts",
+    "validate:eeat": "npx ts-node --project tsconfig.scripts.json scripts/validate-eeat.ts",
+    "validate:eeat:strict": "cross-env EEAT_STRICT=true npx ts-node --project tsconfig.scripts.json scripts/validate-eeat.ts",
+    "validate:geo": "npx ts-node --project tsconfig.scripts.json scripts/validate-geo.ts",
+    "validate:canonicals": "npx ts-node --project tsconfig.scripts.json scripts/validate-canonicals.ts",
+    "lifecycle:check": "npx ts-node --project tsconfig.scripts.json scripts/lifecycle-manager.ts --check",
+    "lifecycle:promote": "npx ts-node --project tsconfig.scripts.json scripts/lifecycle-manager.ts --promote",
+    "lifecycle:prune": "npx ts-node --project tsconfig.scripts.json scripts/lifecycle-manager.ts --prune"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.106.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tailwind-merge": "^3.6.0",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

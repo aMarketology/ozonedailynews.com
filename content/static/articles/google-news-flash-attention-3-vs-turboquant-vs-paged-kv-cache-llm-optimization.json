@@ -1,0 +1,23 @@
+{
+  "slug": "google-news-flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization",
+  "url": "https://www.ozonenetwork.news/google/news/flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization",
+  "title": "FlashAttention 3 vs TurboQuant vs Paged KV Cache | LLM Stack",
+  "subtitle": "Three LLM optimization techniques that solve different bottlenecks and stack together for production inference.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-04-01T14:00:00Z",
+  "publish_date": "April 1, 2026",
+  "author_name": "Alfred Minter",
+  "author_slug": "alfred-minter",
+  "read_time": "8 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Abstract neural network visualization",
+  "tags": ["FlashAttention 3", "TurboQuant", "Paged KV Cache", "LLM", "vLLM", "Google Research"],
+  "content_html": "<p>FlashAttention 3 speeds up attention compute 1.5x to 2x on H100 GPUs. TurboQuant compresses KV cache 6x at 3 bits per value. Paged KV Cache cuts memory waste from 60 to 80 percent down to near zero. They do not compete with each other, they stack.</p><h2>FlashAttention 3 | Faster Attention Compute</h2><p>Tri Dao's FlashAttention 3 targets the Hopper architecture with FP8 support, achieving up to 1,000 TFLOPS on H100 for attention kernels.</p><h2>TurboQuant | Smaller KV Cache</h2><p>Google Research's TurboQuant combines PolarQuant and QJL to compress the KV cache 6x without retraining or calibration data.</p><h2>Paged KV Cache | Better Memory Allocation</h2><p>vLLM's PagedAttention reduces GPU memory fragmentation from up to 80 percent wasted to under 5 percent, enabling more concurrent requests per GPU.</p>",
+  "metadata": {
+    "title": "FlashAttention 3 vs TurboQuant vs Paged KV Cache | LLM Stack",
+    "description": "FlashAttention 3 speeds up attention compute 1.5-2x on H100. TurboQuant compresses KV cache 6x at 3 bits. Paged KV Cache cuts memory waste. They stack together.",
+    "keywords": ["FlashAttention 3 vs TurboQuant comparison", "LLM optimization stack 2026", "KV cache memory fragmentation solution"],
+    "alternates": { "canonical": "https://www.ozonenetwork.news/google/news/flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization" }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "tech-meta-instagram-drops-encrypted-dms",
+  "url": "https://www.ozonenetwork.news/tech/meta/instagram-drops-encrypted-dms",
+  "title": "Instagram Ends Encrypted DMs | Meta Reversal May 2026",
+  "subtitle": "Meta removes optional end-to-end encryption from Instagram DMs on May 8, 2026. Affected users must download their encrypted chats before access disappears.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-05-07T10:00:00Z",
+  "publish_date": "May 7, 2026",
+  "author_name": "Max DeLeonardis",
+  "author_slug": "max-deleonardis",
+  "read_time": "5 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Instagram app on phone screen",
+  "tags": ["Meta", "Instagram", "Privacy", "Encryption"],
+  "content_html": "<p>Meta is removing optional end-to-end encryption from Instagram direct messages on May 8, 2026. The change affects users who opted into E2EE when it was rolled out in 2023.</p><h2>What Is Changing</h2><p>Instagram DMs will no longer be encrypted end-to-end by default or by option after May 8. Meta says fewer than 1 percent of users enabled the feature. Users should download their encrypted chat history before the cutoff.</p><h2>How to Export Your Chats</h2><p>Go to Settings, then Privacy, then Download Your Data and request a copy of your messages before the deadline.</p>",
+  "metadata": {
+    "title": "Instagram Ends Encrypted DMs | Meta Reversal May 2026",
+    "description": "Meta ends end-to-end encryption for Instagram direct messages on May 8, 2026. What changed, who is affected, and what users should do before the cutoff.",
+    "keywords": ["Instagram end-to-end encryption", "Meta removes Instagram E2EE", "Instagram encrypted DMs ending"],
+    "alternates": { "canonical": "https://www.ozonenetwork.news/tech/meta/instagram-drops-encrypted-dms" }
+  }
+}
