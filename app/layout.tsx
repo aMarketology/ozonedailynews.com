@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Merriweather } from 'next/font/google';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/site-config';
+import { BeehiivSignup } from '@/components/newsletter/BeehiivSignup';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const merriweather = Merriweather({ subsets: ['latin'], weight: ['400', '700', '900'], variable: '--font-merriweather', display: 'swap' });
@@ -144,6 +145,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </a>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* Newsletter signup row */}
+          <div className="border-b border-ozone-footer-divider py-8 px-4">
+            <div className="max-w-md mx-auto">
+              <BeehiivSignup variant="footer" />
             </div>
           </div>
 

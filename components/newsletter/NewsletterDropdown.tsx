@@ -19,12 +19,12 @@ import { useAuth } from '@/lib/hooks/use-auth';
 import { tracking } from '@/lib/tracking';
 
 const TOPICS = [
-  { id: 'finance',       label: 'Finance & Markets',  icon: '💰' },
-  { id: 'tech',          label: 'Tech & AI',           icon: '💻' },
-  { id: 'breaking',      label: 'Breaking News',        icon: '🔴' },
-  { id: 'entertainment', label: 'Entertainment',        icon: '🎬' },
-  { id: 'sports',        label: 'Sports & Gaming',      icon: '🏆' },
-  { id: 'world',         label: 'World Affairs',        icon: '🌍' },
+  { id: 'space',         label: 'Space Exploration',    icon: '🛸' },
+  { id: 'climate',       label: 'Climate Science',       icon: '🌡️' },
+  { id: 'ozone',         label: 'Ozone & Atmosphere',    icon: '🌍' },
+  { id: 'tech',          label: 'Tech & AI',             icon: '💻' },
+  { id: 'sustainability', label: 'Sustainability',        icon: '⚡' },
+  { id: 'biodiversity',  label: 'Biodiversity',          icon: '🌿' },
 ] as const;
 
 type TopicId = typeof TOPICS[number]['id'];
@@ -45,7 +45,7 @@ function loadPrefs(): NewsletterPrefs {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw) as NewsletterPrefs;
   } catch { /* ignore */ }
-  return { email: '', topics: ['finance', 'tech', 'breaking'], frequency: 'weekly', subscribed: false };
+  return { email: '', topics: ['space', 'climate', 'ozone'], frequency: 'weekly', subscribed: false };
 }
 
 function savePrefs(prefs: NewsletterPrefs): void {
