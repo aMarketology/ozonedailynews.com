@@ -26,7 +26,7 @@ const BRANDS = [
 
 const KNOWN_AUTHORS = [
   { name: 'Max DeLeonardis',         slug: 'max-deleonardis' },
-  { name: 'Simon Minter',            slug: 'simon-minter' },
+  { name: 'Simon Alfred Minter',            slug: 'simon-minter' },
   { name: 'OzoneNews Editorial Team', slug: 'ozonedailynews-editorial-team' },
 ];
 

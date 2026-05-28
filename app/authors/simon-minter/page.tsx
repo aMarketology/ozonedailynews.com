@@ -5,14 +5,14 @@ import { SITE_CONFIG } from '@/lib/site-config';
 const AUTHOR_URL = `${SITE_CONFIG.url}/authors/simon-minter`;
 
 export const metadata: Metadata = {
-  title: 'Simon Minter | Science & Technology Reporter, OzoneNews',
+  title: 'Simon Alfred Minter | Science & Technology Reporter, OzoneNews',
   description:
-    'Simon Minter covers space exploration, climate science, and emerging technology for OzoneNews. His reporting draws on primary sources including NASA, NOAA, ESA, and peer-reviewed research.',
+    'Simon Alfred Minter covers space exploration, climate science, and emerging technology for OzoneNews. His reporting draws on primary sources including NASA, NOAA, ESA, and peer-reviewed research.',
   alternates: { canonical: AUTHOR_URL },
   openGraph: {
-    title: 'Simon Minter | Science & Technology Reporter, OzoneNews',
+    title: 'Simon Alfred Minter | Science & Technology Reporter, OzoneNews',
     description:
-      'Simon Minter covers space exploration, climate science, and emerging technology for OzoneNews.',
+      'Simon Alfred Minter covers space exploration, climate science, and emerging technology for OzoneNews.',
     url: AUTHOR_URL,
     type: 'profile',
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Simon Minter',
+  name: 'Simon Alfred Minter',
   url: AUTHOR_URL,
   jobTitle: 'Science & Technology Reporter',
   worksFor: {
@@ -31,7 +31,7 @@ const personSchema = {
     publishingPrinciples: `${SITE_CONFIG.url}/editorial-standards`,
   },
   description:
-    'Simon Minter is a science and technology reporter covering space exploration, atmospheric science, climate data, and AI for OzoneNews.',
+    'Simon Alfred Minter is a science and technology reporter covering space exploration, atmospheric science, climate data, and AI for OzoneNews.',
   knowsAbout: [
     'Space Exploration',
     'NASA',
@@ -92,7 +92,7 @@ export default function AlfredMinterPage() {
             AM
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">Simon Minter</h1>
+            <h1 className="text-3xl font-bold text-slate-900">Simon Alfred Minter</h1>
             <p className="mt-1 text-lg text-slate-500">Science &amp; Technology Reporter</p>
             <p className="mt-1 text-sm text-slate-400">
               <Link
@@ -121,7 +121,7 @@ export default function AlfredMinterPage() {
         <section className="mb-8">
           <h2 className="mb-3 text-xl font-semibold text-slate-800 border-b pb-2">About</h2>
           <p className="text-slate-700 leading-relaxed">
-            Simon Minter is a science and technology reporter for OzoneNews. He covers space
+            Simon Alfred Minter is a science and technology reporter for OzoneNews. He covers space
             exploration, atmospheric science, climate data, and artificial intelligence, drawing
             directly on primary sources including{' '}
             <a

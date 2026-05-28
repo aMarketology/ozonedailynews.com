@@ -142,7 +142,7 @@ These are quality-of-life improvements. Not blockers.
 - [ ] **Post-publish registry sync** — after a GitHub commit, trigger `npm run wiki:sync -- --write` automatically via GitHub Actions so `content_registry.json` and the sitemap update without a manual step
 - [ ] **Google Search Console service account** — set `GOOGLE_SA_EMAIL` and `GOOGLE_SA_PRIVATE_KEY` to enable lifecycle auto-promotion (`news` → `review` after 48h based on impression data)
 - [ ] **Bing Webmaster API** — set `BING_WEBMASTER_API_KEY` to enable `npm run ping:indexers` after each publish
-- [ ] **Simon Minter editor access** — once Alfred creates his Supabase account, insert profile row with `is_editor = true` and appropriate `brand_slugs`
+- [ ] **Simon Alfred Minter editor access** — once Alfred creates his Supabase account, insert profile row with `is_editor = true` and appropriate `brand_slugs`
 - [ ] **Media upload** — Supabase Storage bucket for thumbnails so editors can upload images directly from the admin form instead of pasting external URLs
 
 ---

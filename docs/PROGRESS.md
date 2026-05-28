@@ -61,16 +61,16 @@ The CMS turns Supabase into a private draft workspace. Editors write in `/admin`
 
 | Slug | Category | Author |
 |---|---|---|
-| `google-news-flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization` | Tech | Simon Minter |
-| `google-news-google-samsung-ai-smart-glasses-fall-2026` | Tech | Simon Minter |
-| `google-news-turboquant-llm-kv-cache-compression` | Tech | Simon Minter |
-| `google-waymo-waymo-500000-rides-per-week-10-cities-2026` | Tech | Simon Minter |
-| `intel-18a-high-volume-manufacturing` | Tech | Simon Minter |
-| `nasa-news-black-hole-jet-power-measured-cygnus-x1-curtin-university` | Science | Simon Minter |
-| `nasa-news-jwst-wasp-94ab-daily-cloud-cycle-hot-jupiter-weather-2026` | Science | Simon Minter |
-| `tech-meta-instagram-drops-encrypted-dms` | Tech | Simon Minter |
-| `tech-news-87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026` | Tech | Simon Minter |
-| `tech-news-gitlab-restructuring-may-2026-workforce-agentic-ai-pivot` | Tech | Simon Minter |
+| `google-news-flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization` | Tech | Simon Alfred Minter |
+| `google-news-google-samsung-ai-smart-glasses-fall-2026` | Tech | Simon Alfred Minter |
+| `google-news-turboquant-llm-kv-cache-compression` | Tech | Simon Alfred Minter |
+| `google-waymo-waymo-500000-rides-per-week-10-cities-2026` | Tech | Simon Alfred Minter |
+| `intel-18a-high-volume-manufacturing` | Tech | Simon Alfred Minter |
+| `nasa-news-black-hole-jet-power-measured-cygnus-x1-curtin-university` | Science | Simon Alfred Minter |
+| `nasa-news-jwst-wasp-94ab-daily-cloud-cycle-hot-jupiter-weather-2026` | Science | Simon Alfred Minter |
+| `tech-meta-instagram-drops-encrypted-dms` | Tech | Simon Alfred Minter |
+| `tech-news-87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026` | Tech | Simon Alfred Minter |
+| `tech-news-gitlab-restructuring-may-2026-workforce-agentic-ai-pivot` | Tech | Simon Alfred Minter |
 
 ---
 

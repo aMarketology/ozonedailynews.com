@@ -258,7 +258,7 @@ const KNOWN_AUTHORS: string[] = [
 | Slug | Name | Role | Beat |
 |---|---|---|---|
 | `max-deleonardis` | Max DeLeonardis | Founder & Publisher | Premium investigations, in-depth science |
-| `simon-minter` | Simon Minter | Editorial Assistant | Breaking news, aggregation, short-form |
+| `simon-minter` | Simon Alfred Minter | Editorial Assistant | Breaking news, aggregation, short-form |
 | `ozonedailynews-editorial-team` | OzoneNews Editorial Team | Desk byline | Data reports, wire stories |
 
 ### Adding a New Author
