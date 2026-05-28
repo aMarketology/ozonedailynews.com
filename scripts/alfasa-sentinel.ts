@@ -12,9 +12,9 @@ import path from 'path';
 
 const KNOWN_AUTHORS: string[] = [
   // Add new authors here when their /authors/[slug]/page.tsx is created
-  'ozonedailynews-editorial-team',
-  'alfred-minter',
   'max-deleonardis',
+  'simon-minter',
+  'ozonedailynews-editorial-team',
 ];
 
 const AI_BOILERPLATE = [

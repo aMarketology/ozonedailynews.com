@@ -25,9 +25,9 @@ const BRANDS = [
 ];
 
 const KNOWN_AUTHORS = [
-  { name: 'OzoneNews Editorial Team', slug: 'ozonedailynews-editorial-team' },
-  { name: 'Alfred Minter',           slug: 'alfred-minter' },
   { name: 'Max DeLeonardis',         slug: 'max-deleonardis' },
+  { name: 'Simon Minter',            slug: 'simon-minter' },
+  { name: 'OzoneNews Editorial Team', slug: 'ozonedailynews-editorial-team' },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

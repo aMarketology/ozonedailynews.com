@@ -38,7 +38,7 @@ export default function AboutPage() {
           OzoneNews is owned and operated by{" "}
           <Link href="/authors/max-deleonardis" className="text-blue-600 hover:text-blue-800 underline">Max DeLeonardis</Link>.
           Day-to-day editorial operations are directed by{" "}
-          <Link href="/authors/alfred-minter" className="text-blue-600 hover:text-blue-800 underline">Alfred Minter</Link>,
+          <Link href="/authors/simon-minter" className="text-blue-600 hover:text-blue-800 underline">Simon Minter</Link>,
           Chief of Staff, who oversees reporting teams across all coverage verticals.
         </p>
         <h2 className="font-serif font-bold text-xl text-gray-900 mt-10 mb-3">Contact</h2>

@@ -82,15 +82,7 @@ export default function MaxDeleonardisPage() {
             stories that matter most to a scientifically literate audience.
           </p>
           <p className="mt-3 text-slate-700 leading-relaxed">
-            Max oversees the editorial and operational direction of OzoneNews and the broader{' '}
-            Ozone Network News LLC portfolio of independent publications. Day-to-day reporting is led by{' '}
-            <Link
-              href="/authors/alfred-minter"
-              className="text-blue-600 hover:text-blue-800 underline"
-            >
-              Alfred Minter
-            </Link>
-            , Science &amp; Technology Reporter.
+            Max DeLeonardis is the founder and publisher of OzoneNews and the author of the network's reporting across science, technology, climate, and space.
           </p>
         </section>
 

@@ -61,9 +61,9 @@ const AI_BOILERPLATE = [
 ];
 
 const KNOWN_AUTHORS = [
-  'ozonedailynews-editorial-team',
-  'alfred-minter',
   'max-deleonardis',
+  'simon-minter',
+  'ozonedailynews-editorial-team',
 ];
 
 function runEeatGate(article: ArticleFull): string[] {

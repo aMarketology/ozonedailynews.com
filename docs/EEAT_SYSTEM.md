@@ -247,8 +247,8 @@ The sentinel validates `author_slug` against this list. Add new authors here whe
 ```typescript
 // scripts/alfasa-sentinel.ts — KNOWN_AUTHORS array
 const KNOWN_AUTHORS: string[] = [
-  'alfred-minter',
   'max-deleonardis',
+  'simon-minter',
   'ozonedailynews-editorial-team',
 ];
 ```
@@ -257,8 +257,8 @@ const KNOWN_AUTHORS: string[] = [
 
 | Slug | Name | Role | Beat |
 |---|---|---|---|
-| `alfred-minter` | Alfred Minter | Science & Technology Correspondent | Space, Climate, AI, Atmospheric Science |
-| `max-deleonardis` | Max DeLeonardis | Founder & Publisher | Editorial oversight, not a byline |
+| `max-deleonardis` | Max DeLeonardis | Founder & Publisher | Premium investigations, in-depth science |
+| `simon-minter` | Simon Minter | Editorial Assistant | Breaking news, aggregation, short-form |
 | `ozonedailynews-editorial-team` | OzoneNews Editorial Team | Desk byline | Data reports, wire stories |
 
 ### Adding a New Author
