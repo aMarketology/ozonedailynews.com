@@ -40,7 +40,7 @@ interface NewsletterPrefs {
 const STORAGE_KEY = 'ow_newsletter_prefs';
 
 function loadPrefs(): NewsletterPrefs {
-  if (typeof window === 'undefined') return { email: '', topics: ['finance', 'tech', 'breaking'], frequency: 'weekly', subscribed: false };
+  if (typeof window === 'undefined') return { email: '', topics: ['space', 'climate', 'ozone'], frequency: 'weekly', subscribed: false };
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw) as NewsletterPrefs;
