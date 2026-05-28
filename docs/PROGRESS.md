@@ -35,51 +35,42 @@ The CMS turns Supabase into a private draft workspace. Editors write in `/admin`
 - [x] **Editor profile** — `max@amarketology.com` granted `is_editor = true`, `brand_slugs = {ozone}`
 - [x] **API: `GET/POST /api/cms/articles`** — list and create drafts (auth-gated)
 - [x] **API: `GET/PUT/DELETE /api/cms/articles/[slug]`** — read, update, delete single draft
-- [x] **API: `POST /api/cms/publish`** — Git Bridge: E-E-A-T gate + GitHub Contents API commit + Supabase status update
+- [x] **API: `POST /api/cms/publish`** — Git Bridge: E-E-A-T gate + GitHub Contents API commit + Supabase status update. Re-publish of live articles is now allowed (overwrites static JSON).
 - [x] **E-E-A-T gate** — enforces all editorial rules before any commit lands in GitHub
 - [x] **GitHub PAT** — fine-grained token with `contents:write` on this repo stored in `.env`
 - [x] **Admin UI: `/admin/layout.tsx`** — server-side auth guard, redirects non-editors
-- [x] **Admin UI: `/admin/articles`** — article list with status filters, publish/delete actions
-- [x] **Admin UI: `/admin/articles/new`** — full article form, all schema fields mapped
-- [x] **Admin UI: `/admin/articles/edit/[slug]`** — loads draft, publish button wired
+- [x] **Admin UI: `/admin/articles`** — article list with status filters; Edit, Publish/Republish, Delete, View Live buttons shown for ALL articles regardless of status
+- [x] **Admin UI: `/admin/articles/new`** — full article form, all schema fields including `article_type` dropdown (5 content templates)
+- [x] **Admin UI: `/admin/articles/edit/[slug]`** — loads draft or published article, publish button wired, blue info banner for live articles
 - [x] **`app/auth/callback/route.ts`** — OAuth + email confirmation redirect handler
 - [x] **`proxy.ts`** — Next.js 16 session sync (replaces middleware.ts), cookies visible to server
 - [x] **Login page** — switched to `createAuthBrowserClient()` so sessions land in cookies
-- [x] **`[...slug]` catch-all route** — handles all article URLs dynamically, no per-article `page.tsx` needed
-- [x] **Admin panel confirmed live** — `/admin/articles` returning `200`
-
-### In Progress / Immediate Next Steps
-
-- [ ] **Test end-to-end publish** — write a test article in `/admin/articles/new`, save draft, hit Publish, confirm JSON commits to GitHub `master`
-- [ ] **Backfill script** — read existing 10 static JSON files from `content/static/articles/` and insert as `status = published` rows in Supabase so they appear in `/admin`
-- [ ] **Verify catch-all renders published articles** — after a test commit, hit the live URL and confirm the `[...slug]` page renders correctly
-
-### Pending (after first successful publish confirmed)
-
-- [ ] **Deploy sub-brand branches** — create `basil`, `honey`, `obsidian`, `onyx`, `clover`, `content` Git branches from master
-- [ ] **Sub-brand env config** — set `NEXT_PUBLIC_SITE_NAME`, `NEXT_PUBLIC_SITE_URL`, etc. per Railway/Vercel service
-- [ ] **Add Alfred Minter as editor** — insert profile row once Alfred creates his Supabase account
-- [ ] **Flagship hub pages** — `/science`, `/health`, `/security`, `/finance`, `/lifestyle`, `/world`, `/creators`, `/investigations` aggregate card pages on `ozonenetwork.news`
-- [ ] **`content_registry.json` sync on publish** — post-commit webhook or CI step to run `wiki:sync` so sitemap + news feeds update immediately
+- [x] **`[...slug]` catch-all route** — handles all article URLs dynamically; routes to `NewsArticle`, `JackArticleDB`, `ArticlePageDB`, `CreatorArticleDB`, or `WikiArticle` based on `article_type` field in JSON
+- [x] **`article_type` field** — added to `AdminArticleForm`, `buildPayload()`, and `InitialData` interface. Committed to every static JSON on publish.
+- [x] **`JackArticleFull` type** — added to `lib/types.ts`; `getJackArticleBySlug` added to `lib/article-service.ts`
+- [x] **Backfill script** — `scripts/backfill-articles.ts` and `npm run backfill`. All 10 existing static JSONs imported into Supabase as `status = published`.
+- [x] **Production build** — `npm run build` passes clean, 51 pages, 0 TypeScript errors
+- [x] **Deployed** — commit `519bafa` pushed to master, Railway auto-deploy triggered
+- [x] **Admin panel confirmed live** — `/admin/articles` returning `200`, all 10 articles visible
 
 ---
 
 ## Current Article Inventory
 
-10 articles live as static JSON in `content/static/articles/` — all serving via `[...slug]` catch-all. None are in Supabase yet (published before CMS existed).
+10 articles backfilled into Supabase (`status = published`). All serving live via `[...slug]` catch-all.
 
-| Slug | Domain |
-|---|---|
-| `google-news-flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization` | ozonedailynews.com |
-| `google-news-google-samsung-ai-smart-glasses-fall-2026` | ozonedailynews.com |
-| `google-news-turboquant-llm-kv-cache-compression` | ozonedailynews.com |
-| `google-waymo-waymo-500000-rides-per-week-10-cities-2026` | ozonedailynews.com |
-| `intel-18a-high-volume-manufacturing` | ozonedailynews.com |
-| `nasa-news-black-hole-jet-power-measured-cygnus-x1-curtin-university` | ozonedailynews.com |
-| `nasa-news-jwst-wasp-94ab-daily-cloud-cycle-hot-jupiter-weather-2026` | ozonedailynews.com |
-| `tech-meta-instagram-drops-encrypted-dms` | ozonedailynews.com |
-| `tech-news-87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026` | ozonedailynews.com |
-| `tech-news-gitlab-restructuring-may-2026-workforce-agentic-ai-pivot` | ozonedailynews.com |
+| Slug | Category | Author |
+|---|---|---|
+| `google-news-flash-attention-3-vs-turboquant-vs-paged-kv-cache-llm-optimization` | Tech | Alfred Minter |
+| `google-news-google-samsung-ai-smart-glasses-fall-2026` | Tech | Alfred Minter |
+| `google-news-turboquant-llm-kv-cache-compression` | Tech | Alfred Minter |
+| `google-waymo-waymo-500000-rides-per-week-10-cities-2026` | Tech | Alfred Minter |
+| `intel-18a-high-volume-manufacturing` | Tech | Alfred Minter |
+| `nasa-news-black-hole-jet-power-measured-cygnus-x1-curtin-university` | Science | Alfred Minter |
+| `nasa-news-jwst-wasp-94ab-daily-cloud-cycle-hot-jupiter-weather-2026` | Science | Alfred Minter |
+| `tech-meta-instagram-drops-encrypted-dms` | Tech | Alfred Minter |
+| `tech-news-87-percent-ai-agent-pull-requests-security-flaws-dryrun-report-2026` | Tech | Alfred Minter |
+| `tech-news-gitlab-restructuring-may-2026-workforce-agentic-ai-pivot` | Tech | Alfred Minter |
 
 ---
 
@@ -90,6 +81,8 @@ The CMS turns Supabase into a private draft workspace. Editors write in `/admin`
 | Static JSON as source of truth | Zero DB calls in production, Google Core Web Vitals, Top Stories eligibility |
 | Supabase = draft scratchpad only | Editors write privately, never exposed to public read path |
 | `[...slug]` catch-all route | One route handles all 9 brands and all URL depths, no per-article page stubs |
+| `article_type` field in JSON | Determines which layout component renders — routed in catch-all switch |
+| One Supabase project for all brands | `brand_slug` column routes each article to the correct Git branch on publish |
 | Raw `fetch()` vs Octokit | Keeps bundle slim, only needs 2 GitHub API calls |
 | Brand = Git branch | Each sub-brand deploys independently from its own branch, master = ozonedailynews.com |
 | No canonical in `app/layout.tsx` | Canonical must be per-page only, never in shared layout |
