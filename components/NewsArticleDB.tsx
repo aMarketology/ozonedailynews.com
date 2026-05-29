@@ -56,44 +56,40 @@ export async function NewsArticleDB({ slug }: NewsArticleDBProps) {
   return (
     <SEOWrapper slug={articleUrl}>
       <article className="max-w-7xl mx-auto px-4 py-8">
-        {/* Gradient header with thumbnail */}
-        <header
-          className={`relative rounded-xl overflow-hidden mb-8 ${
-            article.thumbnail_src ? 'bg-gray-900' : 'bg-gradient-to-br from-gray-800 to-gray-900'
-          }`}
-        >
+        {/* Light header with optional thumbnail */}
+        <header className="relative rounded-xl overflow-hidden mb-8 bg-white border border-gray-200">
           {article.thumbnail_src && (
-            <div className="absolute inset-0">
+            <div className="w-full aspect-[16/7] overflow-hidden">
               <img
                 src={article.thumbnail_src}
                 alt={article.thumbnail_alt ?? article.title}
-                className="w-full h-full object-cover opacity-40"
+                className="w-full h-full object-cover"
               />
             </div>
           )}
-          <div className="relative z-10 px-8 py-10">
+          <div className="px-8 py-8">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="text-xs font-semibold uppercase tracking-widest text-gray-300">
+              <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
                 {article.category}
               </span>
               {article.breaking && <ArticleBadge label="Breaking" color="bg-red-600" />}
               {article.trending && <ArticleBadge label="Trending" color="bg-orange-500" />}
               {article.exclusive && <ArticleBadge label="Exclusive" color="bg-purple-600" />}
             </div>
-            <h1 className="article-headline text-2xl md:text-4xl font-bold text-white leading-tight mb-3">
+            <h1 className="article-headline text-2xl md:text-4xl font-bold text-gray-900 leading-tight mb-3">
               {article.title}
             </h1>
             {article.subtitle && (
-              <p className="article-intro text-gray-300 text-lg leading-relaxed max-w-3xl">
+              <p className="article-intro text-gray-600 text-lg leading-relaxed max-w-3xl">
                 {article.subtitle}
               </p>
             )}
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-gray-400">
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-gray-500 border-t border-gray-100 pt-4">
               <span>
                 By{' '}
                 <a
                   href={`/authors/${article.author_slug}`}
-                  className="text-blue-400 hover:text-blue-300 underline"
+                  className="text-blue-600 hover:text-blue-800 underline"
                 >
                   {article.author_name}
                 </a>

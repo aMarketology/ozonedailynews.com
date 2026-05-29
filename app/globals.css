@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+/* Force dark mode to class-based only — site is light mode permanently */
+@variant dark (&:is(.dark *));
+
 /* ─── Ozone Design System ─────────────────────────────────────────────────── */
 
 :root {
+  color-scheme: light;
   /* Canvas & ink */
   --ozone-canvas:  #f6f5f2;        /* warm off-white — never pure white */
   --ozone-ink:     #1c1c2e;        /* deep navy-slate */

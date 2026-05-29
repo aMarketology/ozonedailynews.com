@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Merriweather } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/site-config';
 import { BeehiivSignup } from '@/components/newsletter/BeehiivSignup';
@@ -72,6 +73,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${merriweather.variable} h-full antialiased`}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BPPW57YXD4"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BPPW57YXD4');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(newsOrgSchema) }}

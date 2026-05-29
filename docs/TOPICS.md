@@ -1,7 +1,147 @@
 # OzoneNews | Topic Intelligence Guide
-**Last updated:** May 27, 2026
+**Last updated:** May 29, 2026
 **Scope:** ozonedailynews.com only
 **Purpose:** The topics we are obligated to cover well. Not a list of keywords. A list of things that are actually happening to the planet and to the science that explains it.
+
+---
+
+## May 2026 | High-Opportunity Topic Additions
+
+These topics have emerged or accelerated since the original document was written. All have confirmed search volume growth, low competition from authoritative sources, and direct alignment with OzoneNews's science and sustainability lane.
+
+---
+
+### NEW | Stratospheric Aerosol Injection and Solar Geoengineering (Breakout Topic)
+
+**Why now:** The first unauthorized outdoor geoengineering experiments have been conducted. The U.S. National Academies issued a research framework. Startup Make Sunsets is selling "cooling credits." This is moving from academic debate to real policy conflict in 2026.
+
+**Search opportunity:** `solar geoengineering risks 2026`, `stratospheric aerosol injection ozone`, `make sunsets geoengineering`, `geoengineering side effects`. Low competition, high intent, zero paywalled coverage.
+
+**The ozone angle:** Sulfate aerosols injected into the stratosphere chemically deplete ozone. This is not theoretical — it was observed after Pinatubo in 1991. OzoneNews has unique standing to cover this intersection.
+
+**What to write:**
+- What stratospheric aerosol injection actually does to ozone chemistry (explainer, high GEO value)
+- Make Sunsets: what they launched, who funded it, what scientists say
+- The National Academies solar geoengineering research framework explained
+- Why geoengineering is not in the Paris Agreement and what that means legally
+
+**Primary sources:** National Academies of Sciences, NOAA Chemical Sciences Lab, Nature Climate Change, Carbon Brief
+
+**Article cadence:** 2 per month. This topic is evolving weekly.
+
+---
+
+### NEW | PFAS "Forever Chemicals" | Water, Atmosphere, and Human Health
+
+**Why now:** The EPA finalized the first-ever federal PFAS drinking water limits in April 2024. States are now enforcing. Litigation against 3M and DuPont reached multi-billion dollar settlements. Detection in rainwater, Arctic ice, and human blood is now global news.
+
+**Search opportunity:** `pfas water contamination 2026`, `pfas health effects`, `pfas in drinking water by state`, `forever chemicals latest news`. Sustained high volume, growing month over month.
+
+**The science angle:** PFAS atmospheric transport is an active research area — these chemicals travel via rain and end up everywhere. This is atmospheric science, not just environmental law.
+
+**What to write:**
+- PFAS in rainwater: global measurement data explained
+- EPA PFAS maximum contaminant levels: what the science says
+- PFAS and the immune system: what peer-reviewed studies show
+- Which states have the worst PFAS contamination (data-driven, map-backed)
+- PFAS in Arctic environments: new measurement studies
+
+**Primary sources:** EPA, USGS, Environmental Working Group (EWG), ATSDR, peer-reviewed toxicology journals
+
+**Article cadence:** 1-2 per month. Data drops and litigation milestones are frequent.
+
+---
+
+### NEW | Space Weather and Solar Maximum 2025-2026
+
+**Why now:** Solar Cycle 25 is at or near its peak in 2025-2026, running stronger than NASA predicted. The May 2024 G5 geomagnetic storm was the strongest in 20 years. Aurora sightings at mid-latitudes made it mainstream news. The next major event will drive massive search traffic.
+
+**Search opportunity:** `solar flare 2026`, `geomagnetic storm today`, `aurora forecast`, `solar maximum 2026 effects`. Spike-driven traffic with high repeat visit potential.
+
+**The ozone angle:** Strong solar proton events deplete polar stratospheric ozone measurably. This is a documented, quantified connection that almost no outlet makes. OzoneNews can own this angle.
+
+**What to write:**
+- Solar maximum 2026: what it means and when it peaks (evergreen explainer)
+- How solar storms affect Earth's atmosphere (ozone, radio, GPS)
+- Real-time aurora forecast: how to use NOAA's Space Weather Prediction Center
+- The May 2024 G5 storm: what it disrupted and what it revealed about grid vulnerability
+- Solar proton events and ozone depletion: the science explained
+
+**Primary sources:** NOAA Space Weather Prediction Center (SWPC), NASA Solar Dynamics Observatory, ESA Space Weather Service
+
+**Article cadence:** React to events (any X-class flare = immediate article). 1 evergreen per month.
+
+---
+
+### NEW | Carbon Removal and Direct Air Capture | The Cost Curve Story
+
+**Why now:** Stripe, Google, Microsoft, and Shopify have committed to purchasing carbon removal at scale. Climeworks' Mammoth DAC plant in Iceland came online in 2024 at $1,000/tonne. The DOE 45Q tax credit is funding U.S. DAC hubs. The cost needs to reach $100/tonne to be viable at scale. Tracking this curve is a multi-year data story.
+
+**Search opportunity:** `direct air capture cost 2026`, `carbon removal technology`, `climeworks mammoth plant`, `dac carbon capture progress`. Growing search volume, almost no data-focused coverage.
+
+**What to write:**
+- Direct air capture cost per tonne: where it stands in 2026 (data article, update annually)
+- Climeworks Mammoth: how much CO2 it actually captures vs. what was promised
+- The DOE $3.5 billion DAC hub program: which sites were selected and what they will do
+- Carbon removal vs. carbon offsets: why they are not the same thing
+- What it would actually take to remove 1 billion tonnes of CO2 per year
+
+**Primary sources:** DOE Office of Fossil Energy and Carbon Management, Climeworks press releases, BloombergNEF, Carbon Direct
+
+**Article cadence:** 2 per month. Cost milestone articles are high GEO value.
+
+---
+
+### NEW | Biodiversity Credits and Nature Markets (Emerging Policy Beat)
+
+**Why now:** The Kunming-Montreal Global Biodiversity Framework (COP15) set a 30x30 target — 30% of land and ocean protected by 2030. Nature markets, biodiversity credits, and voluntary carbon-plus-nature schemes are being designed right now. High Ambition Coalition nations are legislating. This is 2026's equivalent of the early carbon market story.
+
+**Search opportunity:** `biodiversity credits explained`, `30x30 target progress 2026`, `nature markets`, `kunming montreal framework update`. Low competition, high credibility potential.
+
+**What to write:**
+- What are biodiversity credits and how do they work (explainer)
+- 30x30 progress report: which countries are on track
+- Voluntary biodiversity markets: who is buying, who is selling, what the science says about additionality
+- The difference between carbon offsets and biodiversity credits
+
+**Primary sources:** IPBES, IUCN, High Ambition Coalition, Taskforce on Nature Markets
+
+**Article cadence:** 1 per month. Evergreen explainers have high GEO citation potential.
+
+---
+
+### NEW | Satellite-Based Environmental Accountability Journalism
+
+**Why now:** A new generation of satellites is making environmental lies verifiable. CarbonMapper, GHGSat, and Sentinel-5P are detecting methane leaks at specific facilities by name. Global Forest Watch tracks deforestation in near-real time. This is data journalism that no outlet is doing consistently.
+
+**Search opportunity:** `methane leak satellite data`, `deforestation real time 2026`, `carbon mapper results`, `oil gas methane emissions tracking`. Very low competition, very high E-E-A-T value.
+
+**What to write:**
+- Which oil and gas facilities are the biggest methane emitters, per satellite data
+- Amazon deforestation May 2026: what PRODES is showing right now
+- How CarbonMapper works: the science behind satellite methane detection
+- Comparing company-reported emissions vs. satellite-detected emissions (accountability piece)
+
+**Primary sources:** CarbonMapper, GHGSat, Global Forest Watch, ESA Copernicus, PRODES (Brazil's INPE)
+
+**Article cadence:** Monthly accountability roundup. React to new satellite data releases.
+
+---
+
+### ELEVATED PRIORITY | Keeling Curve | CO2 at Mauna Loa (Annual Peak Coming)
+
+**Why now:** The annual CO2 peak reading at Mauna Loa typically occurs in May. NOAA and Scripps will publish the 2026 peak reading within days. This is one of the most-searched environmental data events of the year.
+
+**Search opportunity:** `co2 levels 2026`, `keeling curve 2026`, `mauna loa co2 record`, `atmospheric co2 parts per million`. Peaks annually in May-June searches.
+
+**What to write (immediately):**
+- 2026 Keeling Curve peak: the number, what it means, how it compares to every prior year
+- CO2 at 425ppm: a plain-English explainer of why the number matters
+- The Keeling Curve at 65 years: history of the measurement and what it has recorded
+
+**Primary sources:** Scripps CO2 Program (scrippsco2.ucsd.edu), NOAA Global Monitoring Laboratory
+
+**Article cadence:** Immediate. The peak reading may already be published.
 
 ---
 

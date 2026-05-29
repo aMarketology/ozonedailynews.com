@@ -28,6 +28,7 @@ create table if not exists articles (
   subtitle      text,
   category      text        not null,
   status        article_status not null default 'draft',
+  brand_slug    text        not null default 'ozone',
   breaking      boolean     not null default false,
   trending      boolean     not null default false,
   exclusive     boolean     not null default false,
@@ -48,6 +49,7 @@ create table if not exists articles (
 );
 
 create index if not exists articles_slug_idx       on articles (slug);
+create index if not exists articles_brand_idx      on articles (brand_slug);
 create index if not exists articles_status_idx     on articles (status);
 create index if not exists articles_published_idx  on articles (published_at desc);
 create index if not exists articles_breaking_idx   on articles (breaking) where breaking = true;
