@@ -5,6 +5,126 @@
 
 ---
 
+## Tech | AI Research Beat (High-Opportunity, Low Competition)
+
+The TurboQuant article format is the template. Every article in this lane follows the same pattern: one specific paper or release, specific numbers, named researchers and institutions, a data table or benchmark comparison, and a "why this matters for production" section. No opinion. No hype. Just the data.
+
+These articles win because:
+- AI research drops daily and almost no outlet covers the actual numbers
+- Developers and ML engineers search for benchmark comparisons constantly
+- AI labs publish on arXiv before any journalist covers it, so first-mover advantage is real
+- Google Discover heavily surfaces AI research content to technical audiences
+
+### Article Format (always use this for Tech/AI research)
+
+```
+Title: [System/Paper Name] | [Specific Metric Result]
+e.g. "TurboQuant KV Cache | 6x Memory, 8x Speed at 3-bit Precision"
+
+Must include:
+- One data table with benchmark comparisons
+- The exact paper name and authors
+- What problem it solves and what was impossible before
+- Specific numbers: memory, speed, accuracy delta, parameter count
+- What it means for production deployments
+```
+
+---
+
+### AI Infrastructure | LLM Efficiency and Inference
+
+The most-searched area in AI engineering right now. Every major lab is publishing on memory reduction, inference speed, and context window extension. These articles have immediate developer readership.
+
+**Active story threads:**
+
+| Topic | What to write | Target keyword |
+|---|---|---|
+| KV cache compression | New papers (TurboQuant, SnapKV, PyramidKV follow-ons) | `kv cache compression 2026` |
+| Speculative decoding | How Apple, Google, Meta are implementing it | `speculative decoding llm 2026` |
+| Flash Attention variants | Flash Attention 3, FlashInfer benchmarks | `flash attention 3 benchmarks` |
+| MoE routing efficiency | Mixtral, DeepSeek, Grok routing improvements | `mixture of experts inference speed` |
+| Context window scaling | 1M+ token models — what breaks first | `1 million token context window llm` |
+| Quantization methods | GPTQ, AWQ, GGUF comparison data | `llm quantization comparison 2026` |
+| Prefill vs decode optimization | Split batching, chunked prefill | `llm prefill decode latency` |
+| Memory bandwidth limits | Why VRAM is the real bottleneck, not compute | `llm vram requirements 2026` |
+
+**Primary sources:** arXiv cs.LG and cs.AI (daily), Hugging Face blog, Google Research blog, Meta AI blog, NVIDIA developer blog, MLCommons benchmarks
+
+**Article cadence:** 3-4 per week. arXiv drops happen daily — set an alert for `KV cache`, `LLM inference`, `attention mechanism`.
+
+---
+
+### AI Models | New Releases and Benchmark Results
+
+Every major model release drives a search spike that lasts 2-3 weeks. The key is covering the benchmark numbers specifically, not just "it's powerful."
+
+**Active story threads:**
+
+| Topic | What to write | Target keyword |
+|---|---|---|
+| Gemini 2.5 Pro/Ultra benchmarks | MMLU, HumanEval, MATH scores vs GPT-4o | `gemini 2.5 pro benchmarks` |
+| GPT-5 / OpenAI next release | Capability rumors with verified details only | `gpt-5 release date` |
+| Claude 4 Sonnet/Opus | Coding benchmark comparisons | `claude 4 benchmarks 2026` |
+| Llama 4 family | Open weights, fine-tuning results | `llama 4 performance 2026` |
+| DeepSeek R2 | Chinese open-source reasoning model | `deepseek r2 benchmarks` |
+| Qwen 3 | Alibaba model, multilingual benchmarks | `qwen 3 model 2026` |
+| Multimodal benchmarks | Video understanding, document parsing scores | `multimodal llm benchmark 2026` |
+
+**Article format rule:** Always include the specific benchmark table. "Model X scored Y on MMLU" is not enough — show the comparison row with the competing models.
+
+---
+
+### AI Hardware | GPUs, TPUs, Custom Silicon
+
+The hardware story is inseparable from the AI story. Every chip generation determines what is possible in inference and training.
+
+**Active story threads:**
+
+| Topic | What to write | Target keyword |
+|---|---|---|
+| NVIDIA Blackwell GB200 production | Yields, rack configurations, pricing | `nvidia blackwell gb200 2026` |
+| AMD MI350 vs H100 | Benchmark comparison for LLM inference | `amd mi350 benchmark vs h100` |
+| Google TPU v6 (Trillium) | What Google actually runs Gemini on | `google tpu v6 trillium specs` |
+| Apple M4 Ultra AI performance | On-device LLM benchmarks | `apple m4 ultra llm inference` |
+| Groq LPU throughput updates | Tokens per second on latest models | `groq lpu speed 2026` |
+| Etched Sohu ASIC | Purpose-built transformer chip | `etched sohu transformer chip` |
+| Cerebras WSE-3 | Wafer-scale inference benchmarks | `cerebras inference speed 2026` |
+
+---
+
+### AI Agents and Agentic Systems
+
+The most actively searched AI topic outside of model releases. Every framework update, security finding, and workflow paper is news.
+
+**Active story threads:**
+
+| Topic | What to write | Target keyword |
+|---|---|---|
+| Security vulnerabilities in AI agents | The DryRun 87% PR flaw report follow-ons | `ai agent security vulnerabilities 2026` |
+| OpenAI Operator / Computer Use | What it can and cannot do with hard data | `openai operator agent capabilities` |
+| Google Agentic Search / Project Mariner | What the demos actually demonstrated | `google ai agent 2026` |
+| MCP (Model Context Protocol) | What it is, which tools support it | `model context protocol explained` |
+| Multi-agent coordination papers | CrewAI, AutoGen, LangGraph benchmark comparisons | `multi agent llm benchmark 2026` |
+| Agentic coding tools | Cursor, Windsurf, GitHub Copilot benchmark comparisons | `ai coding agent comparison 2026` |
+
+---
+
+### AI Policy and Regulation | Data, Not Opinion
+
+Cover the data and the specific rule text. No editorializing on whether regulation is good or bad.
+
+**Active story threads:**
+
+| Topic | What to write | Target keyword |
+|---|---|---|
+| EU AI Act enforcement timeline | Which obligations kick in when | `eu ai act compliance dates 2026` |
+| US executive orders on AI | What is binding vs. guidance | `us ai regulation 2026` |
+| China AI governance rules | Specific regulations, not geopolitical framing | `china ai regulation 2026` |
+| AI copyright litigation | Specific cases, specific rulings | `ai copyright lawsuit 2026` |
+| AI energy consumption data | Data centers, water use, emissions figures | `ai data center energy consumption 2026` |
+
+---
+
 ## May 2026 | High-Opportunity Topic Additions
 
 These topics have emerged or accelerated since the original document was written. All have confirmed search volume growth, low competition from authoritative sources, and direct alignment with OzoneNews's science and sustainability lane.

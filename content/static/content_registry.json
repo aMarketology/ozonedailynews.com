@@ -1,5 +1,78 @@
 [
   {
+    "slug": "https://www.ozonedailynews.com/news/foia-request-guide-2026-federal-step-by-step",
+    "title": "FOIA Request Guide 2026 | Five Steps to Get Federal Records",
+    "description": "Step-by-step FOIA protocol for 2026: identify the correct agency, use FOIA.gov portals, scope precisely, claim fee waivers, and enforce the 20-day statutory clock.",
+    "publishDate": "2026-05-30",
+    "modifiedDate": "2026-05-30",
+    "category": "News",
+    "tags": [
+      "FOIA",
+      "Freedom of Information Act",
+      "Federal Records",
+      "Investigative Journalism",
+      "Open Government",
+      "Public Records"
+    ],
+    "author": "Max DeLeonardis",
+    "authorSlug": "max-deleonardis",
+    "priority": 0.7,
+    "changeFrequency": "daily",
+    "imageUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=675&fit=crop",
+    "articleType": "NewsArticle",
+    "lifecycle": "evergreen",
+    "breaking": false
+  },
+  {
+    "slug": "https://www.ozonedailynews.com/nasa/artemis-3-timeline-leo-demonstration-2026",
+    "title": "NASA Artemis 3 | Revised Timeline and the LEO Demonstration Profile",
+    "description": "NASA locks Artemis III into late 2027 as a 463 km LEO crewed demonstration with SpaceX Starship HLS and Blue Moon Mark 1. Lunar landing moves to Artemis IV in 2028.",
+    "publishDate": "2026-05-30",
+    "modifiedDate": "2026-05-30",
+    "category": "Science",
+    "tags": [
+      "NASA",
+      "Artemis",
+      "Space Launch System",
+      "Orion",
+      "SpaceX Starship HLS",
+      "Blue Origin",
+      "Lunar Exploration"
+    ],
+    "author": "Max DeLeonardis",
+    "authorSlug": "max-deleonardis",
+    "priority": 0.7,
+    "changeFrequency": "daily",
+    "imageUrl": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=1200&h=675&fit=crop",
+    "articleType": "NewsArticle",
+    "lifecycle": "news",
+    "breaking": false
+  },
+  {
+    "slug": "https://www.ozonedailynews.com/tech/spacex-starship-flight-10-engineering-legacy-v3-transition",
+    "title": "Starship Flight 10 | Engineering Legacy and the V3 Transition",
+    "description": "SpaceX Starship Flight 10 with Ship 37 and Booster 16 exposed structural limits that directly shaped V3 megarocket design. Full engineering breakdown.",
+    "publishDate": "2026-05-30",
+    "modifiedDate": "2026-05-30",
+    "category": "Tech",
+    "tags": [
+      "SpaceX",
+      "Starship",
+      "Super Heavy",
+      "Rocket Engineering",
+      "Starbase",
+      "Space Launch"
+    ],
+    "author": "Max DeLeonardis",
+    "authorSlug": "max-deleonardis",
+    "priority": 0.7,
+    "changeFrequency": "daily",
+    "imageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200&h=675&fit=crop",
+    "articleType": "NewsArticle",
+    "lifecycle": "news",
+    "breaking": false
+  },
+  {
     "slug": "https://www.ozonedailynews.com/science/pigeon-magnetic-navigation-liver-macrophages-science-2026",
     "title": "Pigeon Navigation | Magnetic Compass Found in Liver, Not Brain",
     "description": "Pigeon magnetic navigation relies on iron-rich liver macrophages, not the brain. A Science study from University of Bonn rewrites how birds find their way home.",
