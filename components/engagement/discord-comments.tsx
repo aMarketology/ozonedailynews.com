@@ -189,6 +189,7 @@ export default function DiscordComments({ slug, articleTitle }: Props) {
 
   // ── On mount: check Supabase session ─────────────────────────────────────
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     if (hasMounted.current) return;
     hasMounted.current = true;
 

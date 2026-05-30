@@ -26,17 +26,17 @@ export default function UserProfile() {
   return (
     <DropdownMenu onOpenChange={(open) => { if (!open) setShowNewsletter(false); }}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-12 w-12 rounded-full p-0">
+        <Button variant="ghost" className="relative h-9 w-9 rounded-full p-0">
           {avatarUrl ? (
             <Image
               src={avatarUrl}
               alt={displayName}
-              width={48}
-              height={48}
-              className="rounded-full w-12 h-12 object-cover"
+              width={36}
+              height={36}
+              className="rounded-full w-9 h-9 object-cover"
             />
           ) : (
-            <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-lg">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
               {displayName.charAt(0).toUpperCase()}
             </div>
           )}

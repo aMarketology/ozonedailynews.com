@@ -8,7 +8,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { createBrowserClient } from '@/lib/supabase/client';
+import { createAuthBrowserClient } from '@/lib/supabase/client';
 import type { User } from '@supabase/supabase-js';
 
 interface AuthState {
@@ -22,6 +22,8 @@ interface AuthState {
   loading: boolean;
   /** Redirect to the login page (preserves current URL as return path) */
   signIn: () => void;
+  /** Redirect to sign-up on the login page */
+  signUp: () => void;
   /** Sign the user out via Supabase and reload */
   signOut: () => Promise<void>;
 }
@@ -31,15 +33,19 @@ export function useAuth(): AuthState {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const supabase = createBrowserClient();
+    // Skip during SSR / static prerender — auth is client-only
+    if (typeof window === 'undefined') {
+      setLoading(false);
+      return;
+    }
 
-    // Check initial session
+    const supabase = createAuthBrowserClient();
+
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user ?? null);
       setLoading(false);
     });
 
-    // Listen for auth state changes (sign-in, sign-out, token refresh)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
@@ -50,13 +56,17 @@ export function useAuth(): AuthState {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = useCallback(() => {
+  const authRedirect = useCallback((mode?: 'signup') => {
     const returnUrl = typeof window !== 'undefined' ? window.location.href : '/';
-    window.location.href = `/login?redirect=${encodeURIComponent(returnUrl)}`;
+    const modeParam = mode === 'signup' ? '&mode=signup' : '';
+    window.location.href = `/login?redirect=${encodeURIComponent(returnUrl)}${modeParam}`;
   }, []);
 
+  const signIn = useCallback(() => authRedirect(), [authRedirect]);
+  const signUp = useCallback(() => authRedirect('signup'), [authRedirect]);
+
   const signOut = useCallback(async () => {
-    const supabase = createBrowserClient();
+    const supabase = createAuthBrowserClient();
     await supabase.auth.signOut();
     window.location.href = '/';
   }, []);
@@ -67,6 +77,7 @@ export function useAuth(): AuthState {
     isAuth: !!user,
     loading,
     signIn,
+    signUp,
     signOut,
   };
 }

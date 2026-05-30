@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/site-config';
 import { BeehiivSignup } from '@/components/newsletter/BeehiivSignup';
+import SiteChrome from '@/components/nav/SiteChrome';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const merriweather = Merriweather({ subsets: ['latin'], weight: ['400', '700', '900'], variable: '--font-merriweather', display: 'swap' });
@@ -97,7 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="application/rss+xml" title={`${SITE_CONFIG.name} RSS Feed`} href="/rss.xml" />
       </head>
       <body className="min-h-full flex flex-col ozone-canvas ozone-ink">
-        {children}
+        <SiteChrome>{children}</SiteChrome>
 
         {/* ── Global footer – Journalistic Trust Anchor (OStandard) ── */}
         <footer className="mt-auto border-t-2 border-ozone-accent bg-ozone-footer text-ozone-footer-text">

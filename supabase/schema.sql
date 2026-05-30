@@ -54,6 +54,24 @@ create table if not exists articles (
   updated_at    timestamptz not null default now()
 );
 
+-- PATCH: add columns on existing articles table BEFORE any indexes (upgrade path)
+alter table articles add column if not exists article_type  text        not null default 'news_article';
+alter table articles add column if not exists brand_slug    text        not null default 'ozone';
+alter table articles add column if not exists breaking      boolean     not null default false;
+alter table articles add column if not exists trending      boolean     not null default false;
+alter table articles add column if not exists topic_tag     text;
+alter table articles add column if not exists publish_date  text        not null default '';
+alter table articles add column if not exists author_name   text        not null default '';
+alter table articles add column if not exists author_slug   text        not null default '';
+alter table articles add column if not exists read_time     text;
+alter table articles add column if not exists thumbnail_src text;
+alter table articles add column if not exists thumbnail_alt text;
+alter table articles add column if not exists tags          text[]      not null default '{}';
+alter table articles add column if not exists metadata      jsonb;
+alter table articles add column if not exists extra         jsonb       not null default '{}';
+alter table articles add column if not exists subtitle      text;
+alter table articles add column if not exists url           text;
+
 create index if not exists articles_slug_idx      on articles (slug);
 create index if not exists articles_brand_idx     on articles (brand_slug);
 create index if not exists articles_status_idx    on articles (status);
@@ -77,27 +95,6 @@ drop trigger if exists articles_updated_at on articles;
 create trigger articles_updated_at
   before update on articles
   for each row execute function set_updated_at();
-
--- ============================================================================
--- PATCH: add new columns to existing articles table if upgrading from old schema
--- Safe to run even if columns already exist.
--- ============================================================================
-alter table articles add column if not exists article_type  text        not null default 'news_article';
-alter table articles add column if not exists brand_slug    text        not null default 'ozone';
-alter table articles add column if not exists breaking      boolean     not null default false;
-alter table articles add column if not exists trending      boolean     not null default false;
-alter table articles add column if not exists topic_tag     text;
-alter table articles add column if not exists publish_date  text        not null default '';
-alter table articles add column if not exists author_name   text        not null default '';
-alter table articles add column if not exists author_slug   text        not null default '';
-alter table articles add column if not exists read_time     text;
-alter table articles add column if not exists thumbnail_src text;
-alter table articles add column if not exists thumbnail_alt text;
-alter table articles add column if not exists tags          text[]      not null default '{}';
-alter table articles add column if not exists metadata      jsonb;
-alter table articles add column if not exists extra         jsonb       not null default '{}';
-alter table articles add column if not exists subtitle      text;
-alter table articles add column if not exists url           text;
 
 -- Comment on article_type values for reference:
 -- 'news_article'    → standard news (NewsArticleDB)

@@ -24,34 +24,13 @@ import type { TopicTagType } from '@/components/articles/NewsArticle';
 // without requiring a full build/deploy cycle.
 export const revalidate = 60;
 
+// Article pages use client auth/comments; skip build-time prerender (see generateStaticParams).
+export const dynamic = 'force-dynamic';
+
+// Registry-driven static paths disabled until client engagement is prerender-safe.
+// Pages resolve on demand via getArticleByUrlSegments at request time.
 export async function generateStaticParams() {
-  const registry = await getAllEntries();
-  const params: { slug: string[] }[] = [];
-
-  // Derive path segments from each registry entry's full URL slug
-  for (const entry of registry) {
-    if (entry.lifecycle === 'pruned') continue;
-    try {
-      const rawUrl = entry.slug; // e.g. "https://www.ozonenetwork.news/google/news/article"
-      const pathname = rawUrl.startsWith('http')
-        ? new URL(rawUrl).pathname
-        : rawUrl;
-      const segments = pathname.split('/').filter(Boolean);
-      if (segments.length > 0) params.push({ slug: segments });
-    } catch {
-      // skip malformed registry entries
-    }
-  }
-
-  // Also include flat-slug articles from article-service
-  const articles = await getAllArticles();
-  for (const a of articles) {
-    if (a.slug && !a.slug.includes('/')) {
-      params.push({ slug: [a.slug] });
-    }
-  }
-
-  return params;
+  return [];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
