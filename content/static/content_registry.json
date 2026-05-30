@@ -123,6 +123,28 @@
     "breaking": false
   },
   {
+    "slug": "https://www.ozonedailynews.com/tech/meta/wearables-for-work-enterprise-2026",
+    "title": "Meta Wearables for Work | Enterprise Push 2026",
+    "description": "Meta's leaked memo reveals Wearables for Work, an enterprise platform targeting 10 million wearable sales in H2 2026 as Reality Labs posts $4B losses.",
+    "publishDate": "2026-05-29",
+    "modifiedDate": "2026-05-29",
+    "category": "Tech",
+    "tags": [
+      "Meta",
+      "Reality Labs",
+      "Smart Glasses",
+      "Wearables"
+    ],
+    "author": "Max DeLeonardis",
+    "authorSlug": "max-deleonardis",
+    "priority": 0.7,
+    "changeFrequency": "daily",
+    "imageUrl": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=1200&h=675&fit=crop",
+    "articleType": "NewsArticle",
+    "lifecycle": "news",
+    "breaking": false
+  },
+  {
     "slug": "https://www.ozonedailynews.com/nasa/news/spacex-starship-orbital-flight-record-reuse-milestones-2026",
     "title": "SpaceX Starship Orbital Flight Record | Reuse Milestones and 2026 Manifest",
     "description": "SpaceX Starship Flight 9 completed May 27, 2026 with the second consecutive booster catch. Nine total flights since April 2023. NASA Artemis HLS certification requirements and what comes next.",
