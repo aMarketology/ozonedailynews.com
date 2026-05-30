@@ -2,6 +2,10 @@
 // Universal article catchall. Handles both flat (/article-slug) and nested
 // (/category/sub/article-slug) paths without needing individual page.tsx stubs.
 // Specific stubs (e.g. app/google/news/article/page.tsx) always win in Next.js routing.
+//
+// ISR: revalidate = 60 — pages regenerate server-side within 60 seconds of a
+// publish. This means an editor's typo fix is live within a minute without
+// waiting for a full Railway/Vercel build pipeline to complete.
 
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -15,6 +19,10 @@ import { ArticlePageDB } from '@/components/articles/ArticlePageDB';
 import { CreatorArticleDB } from '@/components/articles/CreatorArticleDB';
 import { WikiArticle } from '@/components/articles/WikiArticle';
 import type { TopicTagType } from '@/components/articles/NewsArticle';
+
+// Revalidate every 60 seconds — ISR means article edits go live within 1 minute
+// without requiring a full build/deploy cycle.
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const registry = await getAllEntries();

@@ -6,9 +6,14 @@
 //   2. Fetch full draft article from Supabase (service role bypasses RLS)
 //   3. Run E-E-A-T gate (same rules as alfasa-sentinel.ts)
 //   4. Format to ArticleFull static JSON (the content/static/articles/ format)
-//   5. Commit file to GitHub via Contents API (no octokit needed — plain fetch)
-//   6. Update Supabase row status → 'published'
-//   7. Return the live URL
+//   5. Upsert registry entry in-process (busts in-memory cache immediately)
+//   6. Commit 2 files atomically to GitHub: article JSON + updated registry
+//      NOTE: page.tsx stubs are NOT generated — app/[...slug]/page.tsx handles
+//      all article routing dynamically. Generating stubs would bloat the file
+//      tree and slow Railway builds as the site scales.
+//   7. If Git commit fails → delete uploaded media from Supabase Storage (rollback)
+//   8. Update Supabase row status → 'published'
+//   9. Return the live URL
 //
 // Required env vars:
 //   GITHUB_TOKEN          — Fine-grained PAT with contents:write on this repo ONLY
@@ -125,62 +130,6 @@ function runEeatGate(article: ArticleFull): string[] {
   return errors;
 }
 
-// ─── page.tsx stub generator ──────────────────────────────────────────────────
-
-/**
- * Generates the app/{routePath}/page.tsx content for an article.
- * routePath is derived from the canonical URL path, e.g. "tech/meta/my-slug"
- */
-function generatePageStub(article: ArticleFull, routePath: string): string {
-  const fullUrl = article.metadata?.alternates?.canonical
-    ?? `https://www.ozonedailynews.com/${routePath}`;
-
-  const tags = (article.tags ?? []).map((t) => `'${t}'`).join(', ');
-  const keywords = (article.metadata?.keywords ?? []).map((k) => `    '${k}',`).join('\n');
-  const componentName = routePath
-    .split('/')
-    .map((s) => s.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase()))
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join('') + 'Page';
-
-  return `import type { Metadata } from 'next';
-import { NewsArticleDB } from '@/components/articles/NewsArticleDB';
-
-const SLUG = '/${routePath}';
-const ARTICLE_URL = \`${fullUrl}\`;
-
-export const metadata: Metadata = {
-  title: ${JSON.stringify(article.metadata?.title ?? article.title)},
-  description: ${JSON.stringify(article.metadata?.description ?? '')},
-  keywords: [
-${keywords}
-  ],
-  alternates: { canonical: ARTICLE_URL },
-  openGraph: {
-    title: ${JSON.stringify(article.metadata?.title ?? article.title)},
-    description: ${JSON.stringify(article.subtitle ?? article.metadata?.description ?? '')},
-    type: 'article',
-    url: ARTICLE_URL,
-    siteName: 'OzoneNews',
-    authors: [${JSON.stringify(article.author_name ?? '')}],
-    publishedTime: ${JSON.stringify(article.published_at ?? '')},
-    modifiedTime: ${JSON.stringify(article.published_at ?? '')},
-    section: ${JSON.stringify(article.category ?? 'News')},
-    tags: [${tags}],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: ${JSON.stringify(article.title)},
-    description: ${JSON.stringify(article.subtitle ?? '')},
-  },
-};
-
-export default function ${componentName}() {
-  return <NewsArticleDB slug=${JSON.stringify(article.slug)} />;
-}
-`;
-}
-
 // ─── GitHub Git Trees API (atomic multi-file commit) ─────────────────────────
 
 interface GitRef    { object: { sha: string } }
@@ -213,6 +162,11 @@ async function ghFetch<T>(
 /**
  * Commits multiple files atomically using the Git Data API.
  * All files land in a single commit — no intermediate states.
+ *
+ * Concurrency safety: the final ref PATCH uses `force: false` (default), so
+ * GitHub rejects it with 422 if another commit landed between our read and
+ * write. We retry up to MAX_RETRIES times, re-fetching the latest ref each
+ * time, so two simultaneous publishes resolve cleanly without data loss.
  */
 async function commitFilesAtomically(
   owner: string,
@@ -220,68 +174,82 @@ async function commitFilesAtomically(
   branch: string,
   token: string,
   files: Array<{ path: string; content: string }>,
-  message: string
+  message: string,
+  maxRetries = 3
 ): Promise<{ ok: boolean; error?: string }> {
-  try {
-    // 1. Get the current branch tip SHA
-    const ref = await ghFetch<GitRef>(
-      `/repos/${owner}/${repo}/git/ref/heads/${branch}`,
-      token
-    );
-    const latestCommitSha = ref.object.sha;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      // 1. Get the CURRENT branch tip (re-fetch on every retry to get latest SHA)
+      const ref = await ghFetch<GitRef>(
+        `/repos/${owner}/${repo}/git/ref/heads/${branch}`,
+        token
+      );
+      const latestCommitSha = ref.object.sha;
 
-    // 2. Get the tree SHA of the latest commit
-    const commit = await ghFetch<GitCommit>(
-      `/repos/${owner}/${repo}/git/commits/${latestCommitSha}`,
-      token
-    );
-    const baseTreeSha = commit.tree.sha;
+      // 2. Get the base tree SHA of the latest commit
+      const commit = await ghFetch<GitCommit>(
+        `/repos/${owner}/${repo}/git/commits/${latestCommitSha}`,
+        token
+      );
+      const baseTreeSha = commit.tree.sha;
 
-    // 3. Create a new tree with all the files (base64 blobs)
-    const treeItems = files.map((f) => ({
-      path: f.path,
-      mode: '100644',
-      type: 'blob',
-      content: f.content, // GitHub accepts raw UTF-8 string here
-    }));
+      // 3. Create a new tree containing all files
+      const treeItems = files.map((f) => ({
+        path: f.path,
+        mode: '100644',
+        type: 'blob',
+        content: f.content, // GitHub accepts raw UTF-8 here
+      }));
 
-    const newTree = await ghFetch<GitTree>(
-      `/repos/${owner}/${repo}/git/trees`,
-      token,
-      {
-        method: 'POST',
-        body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems }),
+      const newTree = await ghFetch<GitTree>(
+        `/repos/${owner}/${repo}/git/trees`,
+        token,
+        {
+          method: 'POST',
+          body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems }),
+        }
+      );
+
+      // 4. Create the commit object
+      const newCommit = await ghFetch<GitNewCommit>(
+        `/repos/${owner}/${repo}/git/commits`,
+        token,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            message,
+            tree: newTree.sha,
+            parents: [latestCommitSha],
+          }),
+        }
+      );
+
+      // 5. Advance the branch ref — will fail with 422 if another commit
+      //    landed since step 1 (concurrency collision). We catch and retry.
+      await ghFetch(
+        `/repos/${owner}/${repo}/git/refs/heads/${branch}`,
+        token,
+        {
+          method: 'PATCH',
+          body: JSON.stringify({ sha: newCommit.sha, force: false }),
+        }
+      );
+
+      return { ok: true };
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      const isConflict = msg.includes('Update is not a fast forward') || msg.includes('422');
+
+      if (isConflict && attempt < maxRetries) {
+        // Exponential backoff: 200ms, 400ms, 800ms
+        await new Promise((r) => setTimeout(r, 200 * Math.pow(2, attempt - 1)));
+        continue;
       }
-    );
 
-    // 4. Create the commit
-    const newCommit = await ghFetch<GitNewCommit>(
-      `/repos/${owner}/${repo}/git/commits`,
-      token,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          message,
-          tree: newTree.sha,
-          parents: [latestCommitSha],
-        }),
-      }
-    );
-
-    // 5. Update the branch ref to point to the new commit
-    await ghFetch(
-      `/repos/${owner}/${repo}/git/refs/heads/${branch}`,
-      token,
-      {
-        method: 'PATCH',
-        body: JSON.stringify({ sha: newCommit.sha }),
-      }
-    );
-
-    return { ok: true };
-  } catch (err) {
-    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+      return { ok: false, error: msg };
+    }
   }
+  return { ok: false, error: 'Max retries exceeded (concurrent publish collision)' };
 }
 
 // ─── POST /api/cms/publish ────────────────────────────────────────────────────
@@ -380,25 +348,17 @@ export async function POST(req: NextRequest) {
   const jsonContent = JSON.stringify(finalArticle, null, 2);
   const jsonFilePath = `content/static/articles/${article.slug}.json`;
 
-  // 8. Derive the Next.js route path from the canonical URL
-  //    e.g. "https://www.ozonedailynews.com/tech/meta/my-article" → "tech/meta/my-article"
+  // 8. Build registry entry and upsert locally (busts in-process cache immediately)
+  //    app/[...slug]/page.tsx handles all routing — NO page.tsx stubs are generated.
+  //    Generating stubs would bloat the file tree and slow builds at scale.
   const canonical = article.metadata?.alternates?.canonical ?? '';
   let routePath: string;
   try {
     routePath = new URL(canonical).pathname.replace(/^\//, '').replace(/\/$/, '');
   } catch {
-    // Fallback: use slug directly if canonical is malformed
     routePath = article.slug ?? '';
   }
 
-  // Only auto-generate page.tsx if we have a valid multi-segment route path
-  // (single-segment slugs go through [...slug] catch-all, so no stub needed)
-  const needsPageStub = routePath.includes('/');
-  const pageFilePath = needsPageStub
-    ? `app/${routePath}/page.tsx`
-    : null;
-
-  // 9a. Build the registry entry for this article
   const registryEntry: ContentEntry = {
     slug:            `/${routePath}`,
     title:           finalArticle.title ?? '',
@@ -418,26 +378,20 @@ export async function POST(req: NextRequest) {
     breaking:        finalArticle.breaking ?? false,
   };
 
-  // 9b. Upsert into the local registry file so the in-process cache is fresh
   upsertRegistryEntry(registryEntry);
 
-  // 9c. Read the updated registry JSON to include in the atomic commit
+  // Read the freshly-written registry to include in the atomic commit
   const { default: fs } = await import('fs');
-  const { default: path } = await import('path');
-  const registryPath = path.join(process.cwd(), 'content', 'static', 'content_registry.json');
+  const { default: nodePath } = await import('path');
+  const registryPath = nodePath.join(process.cwd(), 'content', 'static', 'content_registry.json');
   const registryContent = fs.readFileSync(registryPath, 'utf8');
 
   const filesToCommit: Array<{ path: string; content: string }> = [
-    { path: jsonFilePath, content: jsonContent },
-    { path: 'content/static/content_registry.json', content: registryContent },
+    { path: jsonFilePath,                               content: jsonContent },
+    { path: 'content/static/content_registry.json',    content: registryContent },
   ];
 
-  if (needsPageStub && pageFilePath) {
-    const pageContent = generatePageStub(finalArticle as ArticleFull, routePath);
-    filesToCommit.push({ path: pageFilePath, content: pageContent });
-  }
-
-  // 9. Commit all files atomically in a single Git commit
+  // 9. Commit all files atomically (retries up to 3x on concurrency collision)
   const commitMessage = `publish: ${article.title}`;
   const commitResult = await commitFilesAtomically(
     GITHUB_OWNER,
@@ -447,6 +401,29 @@ export async function POST(req: NextRequest) {
     filesToCommit,
     commitMessage
   );
+
+  // 9b. If Git commit failed AND the article has a Supabase Storage thumbnail,
+  //     delete it to prevent orphaned media accumulation in the bucket.
+  if (!commitResult.ok && finalArticle.thumbnail_src) {
+    try {
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+      const storageCdnBase = `${supabaseUrl}/storage/v1/object/public/media/`;
+      if (finalArticle.thumbnail_src.startsWith(storageCdnBase)) {
+        const storagePath = finalArticle.thumbnail_src.replace(storageCdnBase, '');
+        const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
+        await fetch(`${supabaseUrl}/storage/v1/object/media/${storagePath}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${serviceKey}`, apikey: serviceKey },
+        });
+      }
+    } catch {
+      // Rollback is best-effort — log but don't mask the real commit error
+    }
+    return NextResponse.json(
+      { error: `GitHub commit failed: ${commitResult.error}. Uploaded media was rolled back.` },
+      { status: 502 }
+    );
+  }
 
   if (!commitResult.ok) {
     return NextResponse.json(
@@ -471,6 +448,6 @@ export async function POST(req: NextRequest) {
     branch,
     url: articleUrl,
     filesCommitted: filesToCommit.map((f) => f.path),
-    message: `Committed ${filesToCommit.length} file(s) to ${branch}. Railway will auto-deploy in ~1-2 minutes.${needsPageStub ? ` page.tsx stub created at app/${routePath}/page.tsx.` : ''}`,
+    message: `Committed ${filesToCommit.length} file(s) to ${branch}. Railway will auto-deploy in ~1-2 minutes.`,
   });
 }
