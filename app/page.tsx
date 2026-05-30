@@ -173,7 +173,11 @@ export default async function HomePage() {
                       </div>
                     )}
                     <div className="min-w-0">
-                      <CategoryBadge category={a.category} />
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <CategoryBadge category={a.category} />
+                        {a.breaking && <span className="text-[10px] font-bold uppercase tracking-widest text-red-600">Breaking</span>}
+                        {a.trending && !a.breaking && <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Trending</span>}
+                      </div>
                       <Link href={a.url ? new URL(a.url).pathname : `/${a.slug}`}>
                         <h3 className="font-serif font-bold text-sm leading-snug text-gray-900 hover:text-gray-700 mt-1.5 line-clamp-3">
                           {a.title}
@@ -203,7 +207,11 @@ export default async function HomePage() {
                         </div>
                       )}
                       <div className="p-4">
-                        <CategoryBadge category={a.category} />
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <CategoryBadge category={a.category} />
+                          {a.breaking && <span className="text-[10px] font-bold uppercase tracking-widest text-red-600">Breaking</span>}
+                          {a.trending && !a.breaking && <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Trending</span>}
+                        </div>
                         <Link href={a.url ? new URL(a.url).pathname : `/${a.slug}`}>
                           <h3 className="font-serif font-bold text-base leading-snug text-gray-900 group-hover:text-gray-700 transition-colors mt-2 mb-2 line-clamp-3">
                             {a.title}
