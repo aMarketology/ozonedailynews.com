@@ -3,6 +3,9 @@ import { getAllArticles } from "@/lib/article-service";
 import { SITE_CONFIG } from "@/lib/site-config";
 import type { Metadata } from "next";
 
+// Revalidate every 60 seconds so new articles appear without a full rebuild
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: `${SITE_CONFIG.name} | Objective News Network`,
   description: "Breaking news, analysis and verified reporting from Ozone Network News. Finance, Tech, Politics, World and more.",
@@ -53,6 +56,23 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-white">
+      {/* ── Breaking news ticker ────────────────────────────────────────────── */}
+      {hero?.breaking && (
+        <div className="bg-red-600 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center gap-3">
+            <span className="shrink-0 text-[10px] font-black uppercase tracking-widest bg-white text-red-600 px-2 py-0.5">
+              Breaking
+            </span>
+            <Link
+              href={hero.url ? new URL(hero.url).pathname : `/${hero.slug}`}
+              className="text-xs font-semibold truncate hover:underline"
+            >
+              {hero.title}
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* ── Top bar ─────────────────────────────────────────────────────────── */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
