@@ -78,6 +78,34 @@ create trigger articles_updated_at
   before update on articles
   for each row execute function set_updated_at();
 
+-- ============================================================================
+-- PATCH: add new columns to existing articles table if upgrading from old schema
+-- Safe to run even if columns already exist.
+-- ============================================================================
+alter table articles add column if not exists article_type  text        not null default 'news_article';
+alter table articles add column if not exists brand_slug    text        not null default 'ozone';
+alter table articles add column if not exists breaking      boolean     not null default false;
+alter table articles add column if not exists trending      boolean     not null default false;
+alter table articles add column if not exists topic_tag     text;
+alter table articles add column if not exists publish_date  text        not null default '';
+alter table articles add column if not exists author_name   text        not null default '';
+alter table articles add column if not exists author_slug   text        not null default '';
+alter table articles add column if not exists read_time     text;
+alter table articles add column if not exists thumbnail_src text;
+alter table articles add column if not exists thumbnail_alt text;
+alter table articles add column if not exists tags          text[]      not null default '{}';
+alter table articles add column if not exists metadata      jsonb;
+alter table articles add column if not exists extra         jsonb       not null default '{}';
+alter table articles add column if not exists subtitle      text;
+alter table articles add column if not exists url           text;
+
+-- Comment on article_type values for reference:
+-- 'news_article'    → standard news (NewsArticleDB)
+-- 'jack_article'    → long-form / breaking / investigation (JackArticleDB)
+-- 'wiki_article'    → evergreen reference (WikiArticle)
+-- 'article_page'    → hub / topic page (ArticlePageDB)
+-- 'creator_article' → author profile (CreatorArticleDB)
+
 
 -- ============================================================================
 -- TABLE 2: profiles
