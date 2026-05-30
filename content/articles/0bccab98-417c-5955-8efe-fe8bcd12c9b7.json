@@ -1,0 +1,37 @@
+{
+  "slug": "intel-18a-high-volume-manufacturing",
+  "url": "https://www.ozonenetwork.news/tech/intel/18a-high-volume-manufacturing",
+  "title": "Intel Completes 18A Process Node, Begins High-Volume Manufacturing",
+  "subtitle": "Panther Lake and Clearwater Forest ship on Intel's most advanced node yet, completing the 5 Nodes in 4 Years roadmap.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-01-31T09:00:00Z",
+  "publish_date": "January 31, 2026",
+  "author_name": "Max DeLeonardis",
+  "author_slug": "max-deleonardis",
+  "read_time": "5 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Intel processor chip macro photography",
+  "tags": [
+    "Intel",
+    "Semiconductors",
+    "Manufacturing",
+    "Technology"
+  ],
+  "content_html": "<p>Intel announces 18A process node has entered high-volume manufacturing, completing its ambitious 5 Nodes in 4 Years roadmap. Panther Lake and Clearwater Forest are the first products on the new node.</p><h2>Intel 18A | What It Means</h2><p>The 18A node positions Intel as a credible alternative to TSMC for advanced semiconductor manufacturing, a milestone that comes after years of delays on earlier nodes.</p>",
+  "metadata": {
+    "title": "Intel Completes 18A Process Node, Begins High-Volume",
+    "description": "Intel announces 18A process node has entered high-volume manufacturing, completing its ambitious 5 Nodes in 4 Years roadmap. Panther Lake and Clearwater Forest are first.",
+    "keywords": [
+      "Intel",
+      "Intel 18A",
+      "18A process node",
+      "semiconductor manufacturing",
+      "high-volume production"
+    ],
+    "alternates": {
+      "canonical": "https://www.ozonenetwork.news/tech/intel/18a-high-volume-manufacturing"
+    }
+  },
+  "id": "0bccab98-417c-5955-8efe-fe8bcd12c9b7"
+}

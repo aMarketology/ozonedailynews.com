@@ -1,0 +1,38 @@
+{
+  "slug": "google-news-turboquant-llm-kv-cache-compression",
+  "url": "https://www.ozonenetwork.news/google/news/turboquant-llm-kv-cache-compression",
+  "title": "TurboQuant KV Cache Compression | 6x Memory, 8x Speed",
+  "subtitle": "Google Research cuts LLM KV cache memory 6x and attention speed 8x at 3 bits per value with zero accuracy loss, no retraining.",
+  "category": "Tech",
+  "status": "published",
+  "published_at": "2026-03-25T09:00:00Z",
+  "publish_date": "March 25, 2026",
+  "author_name": "Max DeLeonardis",
+  "author_slug": "max-deleonardis",
+  "read_time": "7 min read",
+  "thumbnail_src": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=675&fit=crop",
+  "thumbnail_alt": "Abstract data compression visualization",
+  "tags": [
+    "Google Research",
+    "TurboQuant",
+    "PolarQuant",
+    "QJL",
+    "LLM",
+    "KV Cache",
+    "ICLR 2026"
+  ],
+  "content_html": "<p>Google Research TurboQuant cuts LLM KV cache memory 6x and attention speed 8x at 3 bits per value with zero accuracy loss and no retraining required.</p><h2>How TurboQuant Works</h2><p>TurboQuant combines two techniques: PolarQuant uses polar coordinate quantization to efficiently compress key vectors, while QJL (Quantized Johnson-Lindenstrauss) handles value vectors. The result is a training-free, calibration-free compression method that works on any LLM.</p><h2>Impact on LLM Inference</h2><p>A 70B parameter model that requires 40GB of VRAM for a 100K token context window drops to roughly 7GB with TurboQuant compression, enabling deployment on smaller GPU clusters.</p>",
+  "metadata": {
+    "title": "TurboQuant KV Cache Compression | 6x Memory, 8x Speed",
+    "description": "Google Research TurboQuant cuts LLM KV cache memory 6x and attention speed 8x at 3 bits per value with zero accuracy loss, no retraining. PolarQuant plus QJL.",
+    "keywords": [
+      "TurboQuant KV cache compression",
+      "LLM KV cache memory reduction",
+      "Google Research LLM compression 2026"
+    ],
+    "alternates": {
+      "canonical": "https://www.ozonenetwork.news/google/news/turboquant-llm-kv-cache-compression"
+    }
+  },
+  "id": "4450abf7-5bb0-5906-bb99-9579d14cad4e"
+}
