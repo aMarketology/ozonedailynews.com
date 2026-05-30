@@ -36,6 +36,7 @@ import { revalidatePath } from 'next/cache';
 import { createSSRClient } from '@/lib/supabase/ssr';
 import { createServiceClient } from '@/lib/supabase/server';
 import { upsertRegistryEntry } from '@/lib/registry-service';
+import { upsertRoute } from '@/lib/routing-service';
 import type { ArticleFull } from '@/lib/types';
 import type { ContentEntry } from '@/lib/types';
 
@@ -340,13 +341,28 @@ export async function POST(req: NextRequest) {
 
   // 7. Format article to static JSON (strip DB-only fields)
   const { id: _id, brand_slug: _brand, ...staticArticle } = article;
+
+  // Generate or reuse an immutable content_id (UUID).
+  // This is the filename in content/articles/[content_id].json.
+  // It NEVER changes even if the author renames the article or changes its URL.
+  const { randomUUID } = await import('crypto');
+  const contentId: string = (article.id && /^[0-9a-f-]{36}$/.test(article.id))
+    ? article.id
+    : randomUUID();
+
   const finalArticle = {
     ...staticArticle,
+    id: contentId,          // embed the id so the file is self-describing
     status: 'published' as const,
     lifecycle: staticArticle.lifecycle ?? 'news',
   };
 
   const jsonContent = JSON.stringify(finalArticle, null, 2);
+
+  // Two file paths for full backward compatibility:
+  //   1. content/articles/[content_id].json — new ID-addressed path (permanent, never moves)
+  //   2. content/static/articles/[slug].json — legacy slug path (existing resolution chain)
+  const idFilePath   = `content/articles/${contentId}.json`;
   const jsonFilePath = `content/static/articles/${article.slug}.json`;
 
   // 8. Build registry entry and upsert locally (busts in-process cache immediately)
@@ -388,8 +404,9 @@ export async function POST(req: NextRequest) {
   const registryContent = fs.readFileSync(registryPath, 'utf8');
 
   const filesToCommit: Array<{ path: string; content: string }> = [
-    { path: jsonFilePath,                               content: jsonContent },
-    { path: 'content/static/content_registry.json',    content: registryContent },
+    { path: idFilePath,                                         content: jsonContent },
+    { path: jsonFilePath,                                       content: jsonContent },
+    { path: 'content/static/content_registry.json',            content: registryContent },
   ];
 
   // 9. Commit all files atomically (retries up to 3x on concurrency collision)
@@ -465,6 +482,12 @@ export async function POST(req: NextRequest) {
       breaking:         registryEntry.breaking ?? false,
     }, { onConflict: 'slug' });
 
+  // 11b. Upsert routing_table — maps the article's public URL to its immutable content_id.
+  //      This is the core of the decoupled routing layer: the Git file is addressed by
+  //      content_id (UUID), while the public URL is a free-form pointer in Supabase.
+  //      Authors can change the URL at any time via /api/cms/reroute without moving Git files.
+  await upsertRoute(routePath, contentId, 'articles', brandSlug);
+
   // 12. On-demand ISR cache bust — invalidates the cached page immediately.
   //     The article is live to readers in milliseconds. Railway's Git deploy
   //     runs in parallel as a backup sync but is no longer blocking.
@@ -484,6 +507,7 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({
     ok: true,
     slug: article.slug,
+    content_id: contentId,
     branch,
     url: articleUrl,
     filesCommitted: filesToCommit.map((f) => f.path),
