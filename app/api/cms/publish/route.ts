@@ -123,61 +123,163 @@ function runEeatGate(article: ArticleFull): string[] {
   return errors;
 }
 
-// ─── GitHub Contents API ──────────────────────────────────────────────────────
+// ─── page.tsx stub generator ──────────────────────────────────────────────────
 
-interface GitHubFileResponse {
-  sha?: string;
-  message?: string;
+/**
+ * Generates the app/{routePath}/page.tsx content for an article.
+ * routePath is derived from the canonical URL path, e.g. "tech/meta/my-slug"
+ */
+function generatePageStub(article: ArticleFull, routePath: string): string {
+  const fullUrl = article.metadata?.alternates?.canonical
+    ?? `https://www.ozonedailynews.com/${routePath}`;
+
+  const tags = (article.tags ?? []).map((t) => `'${t}'`).join(', ');
+  const keywords = (article.metadata?.keywords ?? []).map((k) => `    '${k}',`).join('\n');
+  const componentName = routePath
+    .split('/')
+    .map((s) => s.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase()))
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join('') + 'Page';
+
+  return `import type { Metadata } from 'next';
+import { NewsArticleDB } from '@/components/articles/NewsArticleDB';
+
+const SLUG = '/${routePath}';
+const ARTICLE_URL = \`${fullUrl}\`;
+
+export const metadata: Metadata = {
+  title: ${JSON.stringify(article.metadata?.title ?? article.title)},
+  description: ${JSON.stringify(article.metadata?.description ?? '')},
+  keywords: [
+${keywords}
+  ],
+  alternates: { canonical: ARTICLE_URL },
+  openGraph: {
+    title: ${JSON.stringify(article.metadata?.title ?? article.title)},
+    description: ${JSON.stringify(article.subtitle ?? article.metadata?.description ?? '')},
+    type: 'article',
+    url: ARTICLE_URL,
+    siteName: 'OzoneNews',
+    authors: [${JSON.stringify(article.author_name ?? '')}],
+    publishedTime: ${JSON.stringify(article.published_at ?? '')},
+    modifiedTime: ${JSON.stringify(article.published_at ?? '')},
+    section: ${JSON.stringify(article.category ?? 'News')},
+    tags: [${tags}],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: ${JSON.stringify(article.title)},
+    description: ${JSON.stringify(article.subtitle ?? '')},
+  },
+};
+
+export default function ${componentName}() {
+  return <NewsArticleDB slug=${JSON.stringify(article.slug)} />;
+}
+`;
 }
 
-async function getFileSha(
-  owner: string,
-  repo: string,
-  filePath: string,
-  branch: string,
-  token: string
-): Promise<string | null> {
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${branch}`;
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-  });
-  if (res.status === 404) return null;
-  const json = (await res.json()) as GitHubFileResponse;
-  return json.sha ?? null;
-}
+// ─── GitHub Git Trees API (atomic multi-file commit) ─────────────────────────
 
-async function commitFileToGitHub(
-  owner: string,
-  repo: string,
-  filePath: string,
-  content: string,   // base64-encoded file content
-  message: string,
-  branch: string,
+interface GitRef    { object: { sha: string } }
+interface GitCommit { tree: { sha: string } }
+interface GitTree   { sha: string }
+interface GitNewCommit { sha: string }
+
+async function ghFetch<T>(
+  path: string,
   token: string,
-  existingSha: string | null
-): Promise<{ ok: boolean; error?: string }> {
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-  const body: Record<string, unknown> = { message, content, branch };
-  if (existingSha) body.sha = existingSha;
-
-  const res = await fetch(url, {
-    method: 'PUT',
+  options: RequestInit = {}
+): Promise<T> {
+  const res = await fetch(`https://api.github.com${path}`, {
+    ...options,
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: 'application/vnd.github+json',
       'Content-Type': 'application/json',
       'X-GitHub-Api-Version': '2022-11-28',
+      ...(options.headers ?? {}),
     },
-    body: JSON.stringify(body),
   });
+  if (!res.ok) {
+    const err = (await res.json()) as { message?: string };
+    throw new Error(err.message ?? `GitHub API ${res.status} at ${path}`);
+  }
+  return res.json() as Promise<T>;
+}
 
-  if (res.ok) return { ok: true };
-  const errJson = (await res.json()) as { message?: string };
-  return { ok: false, error: errJson.message ?? `GitHub API ${res.status}` };
+/**
+ * Commits multiple files atomically using the Git Data API.
+ * All files land in a single commit — no intermediate states.
+ */
+async function commitFilesAtomically(
+  owner: string,
+  repo: string,
+  branch: string,
+  token: string,
+  files: Array<{ path: string; content: string }>,
+  message: string
+): Promise<{ ok: boolean; error?: string }> {
+  try {
+    // 1. Get the current branch tip SHA
+    const ref = await ghFetch<GitRef>(
+      `/repos/${owner}/${repo}/git/ref/heads/${branch}`,
+      token
+    );
+    const latestCommitSha = ref.object.sha;
+
+    // 2. Get the tree SHA of the latest commit
+    const commit = await ghFetch<GitCommit>(
+      `/repos/${owner}/${repo}/git/commits/${latestCommitSha}`,
+      token
+    );
+    const baseTreeSha = commit.tree.sha;
+
+    // 3. Create a new tree with all the files (base64 blobs)
+    const treeItems = files.map((f) => ({
+      path: f.path,
+      mode: '100644',
+      type: 'blob',
+      content: f.content, // GitHub accepts raw UTF-8 string here
+    }));
+
+    const newTree = await ghFetch<GitTree>(
+      `/repos/${owner}/${repo}/git/trees`,
+      token,
+      {
+        method: 'POST',
+        body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems }),
+      }
+    );
+
+    // 4. Create the commit
+    const newCommit = await ghFetch<GitNewCommit>(
+      `/repos/${owner}/${repo}/git/commits`,
+      token,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          message,
+          tree: newTree.sha,
+          parents: [latestCommitSha],
+        }),
+      }
+    );
+
+    // 5. Update the branch ref to point to the new commit
+    await ghFetch(
+      `/repos/${owner}/${repo}/git/refs/heads/${branch}`,
+      token,
+      {
+        method: 'PATCH',
+        body: JSON.stringify({ sha: newCommit.sha }),
+      }
+    );
+
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
 }
 
 // ─── POST /api/cms/publish ────────────────────────────────────────────────────
@@ -274,23 +376,44 @@ export async function POST(req: NextRequest) {
   };
 
   const jsonContent = JSON.stringify(finalArticle, null, 2);
-  const base64Content = Buffer.from(jsonContent).toString('base64');
-  const filePath = `content/static/articles/${article.slug}.json`;
+  const jsonFilePath = `content/static/articles/${article.slug}.json`;
 
-  // 8. Check if file already exists in GitHub (need SHA to update)
-  const existingSha = await getFileSha(GITHUB_OWNER, GITHUB_REPO, filePath, branch, GITHUB_TOKEN);
+  // 8. Derive the Next.js route path from the canonical URL
+  //    e.g. "https://www.ozonedailynews.com/tech/meta/my-article" → "tech/meta/my-article"
+  const canonical = article.metadata?.alternates?.canonical ?? '';
+  let routePath: string;
+  try {
+    routePath = new URL(canonical).pathname.replace(/^\//, '').replace(/\/$/, '');
+  } catch {
+    // Fallback: use slug directly if canonical is malformed
+    routePath = article.slug ?? '';
+  }
 
-  // 9. Commit to GitHub
+  // Only auto-generate page.tsx if we have a valid multi-segment route path
+  // (single-segment slugs go through [...slug] catch-all, so no stub needed)
+  const needsPageStub = routePath.includes('/');
+  const pageFilePath = needsPageStub
+    ? `app/${routePath}/page.tsx`
+    : null;
+
+  const filesToCommit: Array<{ path: string; content: string }> = [
+    { path: jsonFilePath, content: jsonContent },
+  ];
+
+  if (needsPageStub && pageFilePath) {
+    const pageContent = generatePageStub(finalArticle as ArticleFull, routePath);
+    filesToCommit.push({ path: pageFilePath, content: pageContent });
+  }
+
+  // 9. Commit all files atomically in a single Git commit
   const commitMessage = `publish: ${article.title}`;
-  const commitResult = await commitFileToGitHub(
+  const commitResult = await commitFilesAtomically(
     GITHUB_OWNER,
     GITHUB_REPO,
-    filePath,
-    base64Content,
-    commitMessage,
     branch,
     GITHUB_TOKEN,
-    existingSha
+    filesToCommit,
+    commitMessage
   );
 
   if (!commitResult.ok) {
@@ -315,6 +438,7 @@ export async function POST(req: NextRequest) {
     slug: article.slug,
     branch,
     url: articleUrl,
-    message: `Committed to ${branch}. Railway will auto-deploy in ~1-2 minutes.`,
+    filesCommitted: filesToCommit.map((f) => f.path),
+    message: `Committed ${filesToCommit.length} file(s) to ${branch}. Railway will auto-deploy in ~1-2 minutes.${needsPageStub ? ` page.tsx stub created at app/${routePath}/page.tsx.` : ''}`,
   });
 }
