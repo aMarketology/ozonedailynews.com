@@ -39,28 +39,37 @@ export function useAuth(): AuthState {
       return;
     }
 
-    const supabase = createAuthBrowserClient();
+    let unsubscribe: (() => void) | undefined;
 
-    // Supabase env vars missing (e.g. Vercel project not yet configured) —
-    // degrade gracefully: user is simply treated as unauthenticated.
-    if (!supabase) {
+    try {
+      const supabase = createAuthBrowserClient();
+
+      if (!supabase) {
+        setLoading(false);
+        return;
+      }
+
+      supabase.auth.getUser()
+        .then(({ data }) => {
+          setUser(data.user ?? null);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(
+        (_event, session) => {
+          setUser(session?.user ?? null);
+          setLoading(false);
+        },
+      );
+
+      unsubscribe = () => subscription.unsubscribe();
+    } catch {
+      // Auth initialisation failed — degrade gracefully (user stays unauthenticated)
       setLoading(false);
-      return;
     }
 
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user ?? null);
-      setLoading(false);
-    }).catch(() => setLoading(false));
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-        setLoading(false);
-      },
-    );
-
-    return () => subscription.unsubscribe();
+    return () => unsubscribe?.();
   }, []);
 
   const authRedirect = useCallback((mode?: 'signup') => {

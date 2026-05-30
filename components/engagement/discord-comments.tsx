@@ -186,56 +186,62 @@ export default function DiscordComments({ slug, articleTitle }: Props) {
       } catch { /* ignore */ }
     }
 
-    const supabase = createBrowserClient();
+    let unsubscribe: (() => void) | undefined;
 
-    // Supabase env vars missing — skip auth, treat as unauthenticated guest
-    if (!supabase) {
+    try {
+      const supabase = createBrowserClient();
+
+      if (!supabase) {
+        setAuthLoading(false);
+      } else {
+        supabase.auth.getUser().then(({ data }) => {
+          const u = data.user;
+          if (u) {
+            const provider = u.app_metadata?.provider ?? 'google';
+            setUser({
+              id:       u.id,
+              name:     u.user_metadata?.full_name
+                     ?? u.user_metadata?.custom_claims?.global_name
+                     ?? u.user_metadata?.name
+                     ?? u.email?.split('@')[0]
+                     ?? 'User',
+              avatar:   u.user_metadata?.avatar_url ?? '',
+              provider,
+            });
+          }
+          setAuthLoading(false);
+        }).catch(() => setAuthLoading(false));
+
+        const supabase2 = createBrowserClient();
+        if (supabase2) {
+          const { data: { subscription } } = supabase2.auth.onAuthStateChange((_event, session) => {
+            const u = session?.user;
+            if (u) {
+              const provider = u.app_metadata?.provider ?? 'google';
+              setUser({
+                id:       u.id,
+                name:     u.user_metadata?.full_name
+                       ?? u.user_metadata?.custom_claims?.global_name
+                       ?? u.user_metadata?.name
+                       ?? u.email?.split('@')[0]
+                       ?? 'User',
+                avatar:   u.user_metadata?.avatar_url ?? '',
+                provider,
+              });
+            } else {
+              setUser(null);
+            }
+            setAuthLoading(false);
+          });
+          unsubscribe = () => subscription.unsubscribe();
+        }
+      }
+    } catch {
+      // Auth initialisation failed — fall back to unauthenticated guest mode
       setAuthLoading(false);
-      return;
     }
 
-    supabase.auth.getUser().then(({ data }) => {
-      const u = data.user;
-      if (u) {
-        const provider = u.app_metadata?.provider ?? 'google';
-        setUser({
-          id:       u.id,
-          name:     u.user_metadata?.full_name
-                 ?? u.user_metadata?.custom_claims?.global_name
-                 ?? u.user_metadata?.name
-                 ?? u.email?.split('@')[0]
-                 ?? 'User',
-          avatar:   u.user_metadata?.avatar_url ?? '',
-          provider,
-        });
-      }
-      setAuthLoading(false);
-    }).catch(() => setAuthLoading(false));
-
-    // Also subscribe to auth changes (e.g. after OAuth redirect back)
-    const supabase2 = createBrowserClient();
-    if (!supabase2) return;
-    const { data: { subscription } } = supabase2.auth.onAuthStateChange((_event, session) => {
-      const u = session?.user;
-      if (u) {
-        const provider = u.app_metadata?.provider ?? 'google';
-        setUser({
-          id:       u.id,
-          name:     u.user_metadata?.full_name
-                 ?? u.user_metadata?.custom_claims?.global_name
-                 ?? u.user_metadata?.name
-                 ?? u.email?.split('@')[0]
-                 ?? 'User',
-          avatar:   u.user_metadata?.avatar_url ?? '',
-          provider,
-        });
-      } else {
-        setUser(null);
-      }
-      setAuthLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    return () => unsubscribe?.();
   }, []);
 
   // ── Fetch comments ────────────────────────────────────────────────────────
