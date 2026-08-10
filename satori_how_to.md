@@ -1,9 +1,7 @@
 # Satori Thumbnail System | How-To Guide
 
 **Updated:** July 9, 2026
-**Production URL:** `https://www.fshot.one` (always use `www.` — bare `fshot.one` returns 308)
-**Local URL:** `http://localhost:3000`
-**Network:** `ozone`
+**Production URL:** `https://satori-neon.vercel.app/
 **Token:** `satori_0c00f62203a65529f7dac2f75b74e684f3806484f23724a3`
 
 ---
