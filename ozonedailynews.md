@@ -7,7 +7,7 @@
 
 ---
 s
-## Editorial
+## Editorials
 
 OzoneNews covers the physical infrastructure of the future: the hardware, energy, science, and capital that determine what the next decade of technology can actually do. We report from primary sources. We do not aggregate, editorialize without named sourcing, or publish speculation as fact. Our reader is technically literate and time-constrained. Every article answers a specific question with verified data.
 
