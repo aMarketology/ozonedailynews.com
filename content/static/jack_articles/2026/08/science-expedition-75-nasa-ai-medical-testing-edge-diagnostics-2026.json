@@ -27,10 +27,10 @@
     "department": "Science"
   },
   "read_time": "7 min read",
-  "thumbnail_src": "[FILL: /thumbnails/science-expedition-75-nasa-ai-medical-testing-edge-diagnostics-2026.jpg]",
+  "thumbnail_src": "/thumbnails/science-expedition-75-nasa-ai-medical-testing-edge-diagnostics-2026.jpg",
   "thumbnail_alt": "NASA astronaut performing an AI-guided medical diagnostic procedure aboard the International Space Station",
   "hero_image": {
-    "src": "[FILL: https://www.ozonedailynews.com/thumbnails/science-expedition-75-nasa-ai-medical-testing-edge-diagnostics-2026.jpg]",
+    "src": "https://www.ozonedailynews.com/thumbnails/science-expedition-75-nasa-ai-medical-testing-edge-diagnostics-2026.jpg",
     "alt": "NASA astronaut performing an AI-guided medical diagnostic procedure aboard the International Space Station"
   },
   "tags": [
@@ -161,7 +161,7 @@
       "description": "Expedition 75 astronauts test edge AI diagnostics aboard the ISS, building autonomous medical systems for Artemis and Mars where Earth is unreachable.",
       "images": [
         {
-          "url": "[FILL: https://www.ozonedailynews.com/thumbnails/science-expedition-75-nasa-ai-medical-testing-edge-diagnostics-2026.jpg]",
+          "url": "https://www.ozonedailynews.com/thumbnails/science-expedition-75-nasa-ai-medical-testing-edge-diagnostics-2026.jpg",
           "width": 1200,
           "height": 675,
           "alt": "NASA astronaut performing an AI-guided medical diagnostic procedure aboard the International Space Station"

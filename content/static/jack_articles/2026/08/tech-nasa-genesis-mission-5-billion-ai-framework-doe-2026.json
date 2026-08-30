@@ -27,10 +27,10 @@
     "department": "Tech"
   },
   "read_time": "7 min read",
-  "thumbnail_src": "[FILL: /thumbnails/tech-nasa-genesis-mission-5-billion-ai-framework-doe-2026.jpg]",
+  "thumbnail_src": "/thumbnails/tech-nasa-genesis-mission-5-billion-ai-framework-doe-2026.jpg",
   "thumbnail_alt": "NASA mission control center with data visualization screens representing the Genesis Mission AI supercomputing framework",
   "hero_image": {
-    "src": "[FILL: https://www.ozonedailynews.com/thumbnails/tech-nasa-genesis-mission-5-billion-ai-framework-doe-2026.jpg]",
+    "src": "https://www.ozonedailynews.com/thumbnails/tech-nasa-genesis-mission-5-billion-ai-framework-doe-2026.jpg",
     "alt": "NASA mission control center with data visualization screens representing the Genesis Mission AI supercomputing framework"
   },
   "tags": [
@@ -161,7 +161,7 @@
       "description": "NASA joins the $5B Genesis Mission, linking its 150-petabyte archive with DOE exascale computing to accelerate space science and lunar logistics.",
       "images": [
         {
-          "url": "[FILL: https://www.ozonedailynews.com/thumbnails/tech-nasa-genesis-mission-5-billion-ai-framework-doe-2026.jpg]",
+          "url": "https://www.ozonedailynews.com/thumbnails/tech-nasa-genesis-mission-5-billion-ai-framework-doe-2026.jpg",
           "width": 1200,
           "height": 675,
           "alt": "NASA mission control center with data visualization screens representing the Genesis Mission AI supercomputing framework"

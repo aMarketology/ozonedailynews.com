@@ -3,6 +3,16 @@
 
 export type Lifecycle = 'news' | 'review' | 'feature' | 'pruned' | 'evergreen';
 
+// ─── Citation (ScholarlyArticle-compatible source object) ─────────────────────
+// Every published article should carry at least one citation for EEAT signals.
+// These feed both the SourcesInterlink component and the JSON-LD citation array.
+export interface Citation {
+  title: string;
+  url: string;
+  publisher: string;
+  datePublished?: string; // ISO-8601, e.g. "2026-08-12"
+}
+
 // ─── Corrections / Updates ledger ──────────────────────────────────────────────
 // Transparency by design: every post-publish change is logged with WHY and WHEN.
 export type CorrectionType = 'correction' | 'update' | 'clarification';
@@ -71,6 +81,7 @@ export interface ArticleFull {
   lifecycle?: Lifecycle;
   modified_date_iso?: string;     // ISO-8601 of last correction/update
   corrections?: CorrectionEntry[]; // transparency ledger, newest last
+  citations?: Citation[];
   metadata?: {
     title?: string;
     description?: string;
@@ -126,6 +137,7 @@ export interface SterlingArticleFull {
   relatedArticles?: RelatedArticle[];
   breadcrumbs?: Array<{ label: string; href: string }>;
   lifecycle?: Lifecycle;
+  citations?: Citation[];
 }
 
 // ─── ArticlePageDB ────────────────────────────────────────────────────────────
@@ -147,6 +159,7 @@ export interface ArticlePageFull {
   thumbnail_alt?: string;
   tags: string[];
   lifecycle?: Lifecycle;
+  citations?: Citation[]; // NEW: array of citations for the article
 }
 
 // ─── CreatorArticleDB ─────────────────────────────────────────────────────────
@@ -184,6 +197,7 @@ export interface CreatorArticleFull {
   infobox?: CreatorInfoboxRow[];
   stats?: CreatorStat[];
   cta_buttons?: Array<{ label: string; href: string; icon?: string }>;
+  citations?: Citation[]; // NEW: array of citations for the article
 }
 
 // ─── WikiArticleDB ────────────────────────────────────────────────────────────
@@ -205,6 +219,7 @@ export interface WikiArticleFull {
   thumbnail_alt?: string;
   tags: string[];
   lifecycle?: Lifecycle;
+  citations?: Citation[]; // NEW: array of citations for the article
 }
 
 // ─── JackArticleFull (long-form / investigation) ────────────────────────────
@@ -232,6 +247,7 @@ export interface JackArticleFull {
   timeline?: Array<{ date: string; event?: string; description?: string; highlight?: boolean }>;
   relatedArticles?: Array<{ url: string; title: string; category?: string }>;
   breadcrumbs?: Array<{ href: string; label: string }>;
+  citations?: Citation[]; // NEW: array of citations for the article
 }
 
 // ─── Content Registry ─────────────────────────────────────────────────────────
@@ -255,4 +271,5 @@ export interface ContentEntry {
   articleType?: 'NewsArticle' | 'JackArticle' | 'SterlingArticle' | 'ArticlePage' | 'CreatorArticle' | 'WikiArticle';
   lifecycle?: Lifecycle;
   breaking?: boolean;
+  citations?: Citation[]; // NEW: array of citations for the article
 }

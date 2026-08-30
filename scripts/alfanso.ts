@@ -43,7 +43,7 @@
 import * as fs   from 'fs';
 import * as path from 'path';
 import * as rl   from 'readline';
-import { execSync } from 'child_process';
+import { execSync } from 'child_process;
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -215,7 +215,7 @@ function jackContentHTML(title: string, category: string): string {
     ``,
     `<FAQAccordion items={[{"question":"[FILL: Most common question about this topic]","answer":"[FILL: 3-5 sentence direct answer. No em dashes.]"},{"question":"[FILL: Second most common question]","answer":"[FILL: 3-5 sentence direct answer.]"},{"question":"[FILL: Third common question]","answer":"[FILL: 3-5 sentence direct answer.]"},{"question":"[FILL: Fourth common question]","answer":"[FILL: 3-5 sentence direct answer.]"},{"question":"[FILL: Fifth common question]","answer":"[FILL: 3-5 sentence direct answer.]"}]} />`,
     ``,
-    `<SourcesInterlink sources={[{"number":1,"url":"[FILL: https://...]","title":"[FILL: Source title]","author":"[FILL: Publisher]","date":"[FILL: Month Year]"},{"number":2,"url":"[FILL: https://...]","title":"[FILL: Source title]","author":"[FILL: Publisher]","date":"[FILL: Month Year]"},{"number":3,"url":"[FILL: https://...]","title":"[FILL: Source title]","author":"[FILL: Publisher]","date":"[FILL: Month Year]"}]} internalLinks={[{"href":"/${cat}/[FILL: related-slug]","label":"[FILL: Related article title]","category":"${category}"},{"href":"/${cat}/[FILL: related-slug]","label":"[FILL: Related article title]","category":"${category}"},{"href":"/${cat}","label":"All ${category} Coverage | OzoneNews","category":"${category}"},{"href":"/science","label":"Science Hub | OzoneNews","category":"Science"}]} accentColor="blue" />`,
+    `<SourcesInterlink sources={[{"number":1,"url":"[FILL: https://...]","title":"[FILL: Source title]","author":"[FILL: Publisher]","date":"[FILL: Month Year]"},{"number":2,"url":"[FILL: https://...]","title":"[FILL: Source title]","author":"[FILL: Publisher]","date":"[FILL: Month Year]"},{"number":3,"url":"[FILL: https://...]","title":"[FILL: Source title]","author":"[FILL: Publisher]","date":"[FILL: Month Year]"}]} internalLinks={[{"href":"/${cat}/[FILL: related-slug]","label":"[FILL: Related article title]","category":"${category}"},{"href":"/${cat}/[FILL: related-slug]","label":"[FILL: Related article title]","category":"${category}"},{"href":"/${cat}","label":"All ${category} Coverage | OzoneNews","category":"${category}"}]} accentColor="blue" />`,
   ].join('\n');
 }
 
@@ -259,6 +259,10 @@ function buildNewsJSON(i: ScaffoldInput): object {
     thumbnail_src: `[FILL: https://images.unsplash.com/photo-XXXXXXXXXX?w=1200&h=675&fit=crop]`,
     thumbnail_alt: `[FILL: Descriptive image alt text — what is shown in the hero image]`,
     tags:          i.tags,
+    citations: [
+      { title: `[FILL: Source article title]`, url: `[FILL: https://...]`, publisher: `[FILL: Publisher Name]`, datePublished: iso },
+      { title: `[FILL: Source article title]`, url: `[FILL: https://...]`, publisher: `[FILL: Publisher Name]`, datePublished: iso },
+    ],
     metadata: {
       title:       metaTit,
       description: `[FILL: 130-155 chars. Primary keyword in first 60 chars. No generic phrases or AI boilerplate.]`,
@@ -328,6 +332,11 @@ function buildJackJSON(i: ScaffoldInput): object {
       alt: `[FILL: same as thumbnail_alt]`,
     },
     tags:     i.tags,
+    citations: [
+      { title: `[FILL: Source article title]`, url: `[FILL: https://...]`, publisher: `[FILL: Publisher Name]`, datePublished: iso },
+      { title: `[FILL: Source article title]`, url: `[FILL: https://...]`, publisher: `[FILL: Publisher Name]`, datePublished: iso },
+      { title: `[FILL: Source article title]`, url: `[FILL: https://...]`, publisher: `[FILL: Publisher Name]`, datePublished: iso },
+    ],
     keywords: [`[FILL: primary keyword phrase]`, `[FILL: secondary keyword phrase]`],
     show_corrections:        true,
     show_editorial_standards: true,

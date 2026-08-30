@@ -18,6 +18,7 @@ import { JackArticleDB } from '@/components/articles/JackArticleDB';
 import { ArticlePageDB } from '@/components/articles/ArticlePageDB';
 import { CreatorArticleDB } from '@/components/articles/CreatorArticleDB';
 import { buildArticleSchema } from '@/lib/article-schema';
+import type { Citation } from '@/lib/types';
 import type { TopicTagType } from '@/components/articles/NewsArticle';
 
 // Revalidate every 60 seconds — ISR means article edits go live within 1 minute
@@ -119,6 +120,7 @@ export default async function ArticleCatchallPage({ params }: { params: Promise<
         category: article.category,
         articleType,
         lifecycle: articleAny.lifecycle as string | undefined,
+        citations: (articleAny.citations as Citation[] | undefined) ?? undefined,
       });
 
   // Build breadcrumbs from URL segments

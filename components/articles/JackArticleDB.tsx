@@ -23,6 +23,8 @@ import { getAuthor } from '@/lib/authors';
 import { extractAndInjectToc } from '@/lib/toc-utils';
 import JackArticle from './JackArticle';
 import { ContentRenderer } from './ContentRenderer';
+import { SourcesInterlink } from './SourcesInterlink';
+import type { Citation } from '@/lib/types';
 import { SisterSiteCallout } from '@/components/ui/SisterSiteLink';
 
 const STATIC_DIR = path.join(process.cwd(), 'content', 'static', 'jack_articles');
@@ -176,6 +178,15 @@ export async function JackArticleDB({ slug }: JackArticleDBProps) {
         />
       )}
       <ContentRenderer html={processedHtml} />
+      <SourcesInterlink
+        sources={Array.isArray(row.sources) ? row.sources.map((s: { url: string; title: string; publisher?: string }, i: number) => ({
+          number: i + 1,
+          url: s.url,
+          title: s.title,
+          author: s.publisher,
+        })) : []}
+        citations={Array.isArray(row.citations) ? (row.citations as Citation[]) : []}
+      />
     </JackArticle>
   );
 }

@@ -27,10 +27,10 @@
     "department": "Tech"
   },
   "read_time": "8 min read",
-  "thumbnail_src": "[FILL: /thumbnails/tech-spacex-tesla-texas-terafab-gigasat-ai-semiconductor-2026.jpg]",
+  "thumbnail_src": "/thumbnails/tech-spacex-tesla-texas-terafab-gigasat-ai-semiconductor-2026.jpg",
   "thumbnail_alt": "Aerial view of a massive semiconductor manufacturing complex in Texas representing SpaceX and Tesla's Terafab facility",
   "hero_image": {
-    "src": "[FILL: https://www.ozonedailynews.com/thumbnails/tech-spacex-tesla-texas-terafab-gigasat-ai-semiconductor-2026.jpg]",
+    "src": "https://www.ozonedailynews.com/thumbnails/tech-spacex-tesla-texas-terafab-gigasat-ai-semiconductor-2026.jpg",
     "alt": "Aerial view of a massive semiconductor manufacturing complex in Texas representing SpaceX and Tesla's Terafab facility"
   },
   "tags": [
@@ -161,7 +161,7 @@
       "description": "SpaceX and Tesla commit $16.8B to build a 100M sq ft Texas chip complex and an orbital AI satellite factory targeting 1 GW of space compute by 2027.",
       "images": [
         {
-          "url": "[FILL: https://www.ozonedailynews.com/thumbnails/tech-spacex-tesla-texas-terafab-gigasat-ai-semiconductor-2026.jpg]",
+          "url": "https://www.ozonedailynews.com/thumbnails/tech-spacex-tesla-texas-terafab-gigasat-ai-semiconductor-2026.jpg",
           "width": 1200,
           "height": 675,
           "alt": "Aerial view of a massive semiconductor manufacturing complex in Texas representing SpaceX and Tesla's Terafab facility"

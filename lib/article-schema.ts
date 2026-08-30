@@ -17,6 +17,7 @@
 
 import { SITE_CONFIG } from './site-config';
 import { getAuthor, authorUrl } from './authors';
+import type { Citation } from './types';
 
 export type SchemaArticleType = 'NewsArticle' | 'Article';
 
@@ -49,6 +50,7 @@ export interface ArticleSchemaInput {
   category?: string;
   articleType?: string | null;
   lifecycle?: string | null;
+  citations?: Citation[];
 }
 
 /** Build the author node — rich registered Person entity when known, else a bare Person. */
@@ -112,5 +114,19 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
     isAccessibleForFree: true,
     ...(input.tags?.length ? { keywords: input.tags.join(', ') } : {}),
     ...(input.category ? { articleSection: input.category } : {}),
+    ...(input.citations?.length
+      ? {
+          citation: input.citations.map((cit: Citation) => ({
+            '@type': 'CreativeWork',
+            name: cit.title,
+            url: cit.url,
+            publisher: {
+              '@type': 'Organization',
+              name: cit.publisher,
+            },
+            ...(cit.datePublished && { datePublished: cit.datePublished }),
+          })),
+        }
+      : {}),
   };
 }

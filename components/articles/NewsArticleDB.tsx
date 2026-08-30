@@ -17,6 +17,8 @@ import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { NewsArticle } from './NewsArticle';
 import { ContentRenderer } from './ContentRenderer';
+import { SourcesInterlink } from './SourcesInterlink';
+import type { Citation } from '@/lib/types';
 import type { BreadcrumbItem } from '@/components/nav/Breadcrumb';
 
 // ---------------------------------------------------------------------------
@@ -260,6 +262,11 @@ export async function NewsArticleDB({ slug }: NewsArticleDBProps) {
       moreFromHubHref={moreFromHubHref}
     >
       <ContentRenderer html={r.content_html ?? ''} />
+      {Array.isArray(r.citations) && r.citations.length > 0 && (
+        <SourcesInterlink
+          citations={r.citations as Citation[]}
+        />
+      )}
     </NewsArticle>
   );
 }

@@ -1,6 +1,6 @@
 # Satori Thumbnail System | How-To Guide
 
-**Updated:** July 9, 2026
+**Updated:** August 10, 2026
 **Production URL:** `https://satori-neon.vercel.app/
 **Token:** `satori_0c00f62203a65529f7dac2f75b74e684f3806484f23724a3`
 
@@ -128,12 +128,14 @@ npm run wiki:sync -- --write
 
 The layout controls the overall visual composition of the thumbnail.
 
-| Layout | Use when | Examples |
-|---|---|---|
-| `cinematic` | Science, space, archaeology, biology, deep-dive features | NASA missions, Euclid telescope, Cold Atom Lab, Neanderthal studies |
-| `breaking` | Breaking news, time-sensitive stories, funding rounds, launches | SpaceX launches, Blue Origin funding, explosions, policy announcements |
-| `standard` | General news, everyday articles with no strong visual category | Politics, world news, business updates |
-| `minimal` | Opinion, editorial, text-heavy content | Op-eds, analysis pieces |
+| Layout | Resolution | Use when | Examples |
+|---|---|---|---|
+| `cinematic` | 1200×630 | Science, space, archaeology, biology, deep-dive features | NASA missions, Euclid telescope, Cold Atom Lab, Neanderthal studies |
+| `breaking` | 1200×630 | Breaking news, time-sensitive stories, funding rounds, launches | SpaceX launches, Blue Origin funding, explosions, policy announcements |
+| `standard` | 1200×630 | General news, everyday articles with no strong visual category | Politics, world news, business updates |
+| `minimal` | 1200×630 | Opinion, editorial, text-heavy content | Op-eds, analysis pieces |
+| `youtube` | 1280×720 | YouTube video coverage, video essays, trailer reactions | Imported YouTube thumbnails as base layer |
+| `social` | 1200×1200 | Instagram, LinkedIn, square-format social posts | Social-first content, quote cards |
 
 ---
 
@@ -377,6 +379,203 @@ Review Score:   88
 
 ---
 
+### YouTube Thumbnails — Import Video Frames as Base Layer
+
+Satori can now scrape YouTube video thumbnails and auto-generated frames. This is great for video essay coverage, trailer reactions, or any article about a specific YouTube video.
+
+#### How it works
+
+YouTube provides 5 free frame variants for every video — no API key needed:
+
+| Frame | URL pattern | Resolution | Availability |
+|---|---|---|---|
+| Maxresdefault | `img.youtube.com/vi/{id}/maxresdefault.jpg` | 1280×720 | Most videos (not legacy) |
+| HQ Default | `img.youtube.com/vi/{id}/hqdefault.jpg` | 480×360 | Always available |
+| Auto frame 1 | `img.youtube.com/vi/{id}/1.jpg` | 320×180 | ~25% into video |
+| Auto frame 2 | `img.youtube.com/vi/{id}/2.jpg` | 320×180 | ~50% into video |
+| Auto frame 3 | `img.youtube.com/vi/{id}/3.jpg` | 320×180 | ~75% into video |
+
+Metadata (title, channel name) is fetched from YouTube's free oEmbed endpoint — also no API key required.
+
+#### Setup — no configuration needed
+
+YouTube integration works out of the box. No API keys, no tokens, no environment variables. The endpoint uses:
+- **YouTube oEmbed API** (`youtube.com/oembed`) — free, public, no auth
+- **Direct `img.youtube.com` URLs** — public CDN, always available
+
+#### Programmatic API — `POST /api/v1/fetch-youtube`
+
+For scripts and automated workflows, use the dedicated endpoint:
+
+```bash
+curl -X POST "https://www.fshot.one/api/v1/fetch-youtube" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://www.youtube.com/watch?v=sR6B5x6EAN8"}'
+```
+
+Returns:
+
+```json
+{
+  "videoId": "sR6B5x6EAN8",
+  "title": "Video Title Here",
+  "channelName": "Channel Name",
+  "channelUrl": "https://www.youtube.com/@channel",
+  "thumbnailUrl": "https://img.youtube.com/vi/sR6B5x6EAN8/maxresdefault.jpg",
+  "thumbnailFallbackUrl": "https://img.youtube.com/vi/sR6B5x6EAN8/hqdefault.jpg",
+  "frames": {
+    "maxres": "https://img.youtube.com/vi/sR6B5x6EAN8/maxresdefault.jpg",
+    "sd": "https://img.youtube.com/vi/sR6B5x6EAN8/sddefault.jpg",
+    "hq": "https://img.youtube.com/vi/sR6B5x6EAN8/hqdefault.jpg",
+    "mq": "https://img.youtube.com/vi/sR6B5x6EAN8/mqdefault.jpg",
+    "frame1": "https://img.youtube.com/vi/sR6B5x6EAN8/1.jpg",
+    "frame2": "https://img.youtube.com/vi/sR6B5x6EAN8/2.jpg",
+    "frame3": "https://img.youtube.com/vi/sR6B5x6EAN8/3.jpg"
+  },
+  "allFrameUrls": ["...", "...", "...", "...", "..."],
+  "frameLabels": ["Thumbnail (HD)", "Thumbnail (HQ)", "Frame ~25%", "Frame ~50%", "Frame ~75%"]
+}
+```
+
+#### Python urllib — pull YouTube + mint in one script
+
+```python
+import urllib.request, urllib.parse, json, os
+
+SATORI_BASE = "https://www.fshot.one"
+YT_URL      = "https://www.youtube.com/watch?v=sR6B5x6EAN8"
+SLUG        = "youtube-video-article-2026"
+BRAND       = "ozone"
+LAYOUT      = "youtube"
+ACCENT      = "#00d4ff"
+OVERLAY     = "80"
+OUT_PATH    = f"public/thumbnails/{SLUG}.jpg"
+
+# ── Step 1: Fetch YouTube metadata ────────────────────────────────────────
+req = urllib.request.Request(
+    f"{SATORI_BASE}/api/v1/fetch-youtube",
+    data=json.dumps({"url": YT_URL}).encode(),
+    headers={"Content-Type": "application/json"},
+    method="POST"
+)
+with urllib.request.urlopen(req) as resp:
+    yt = json.loads(resp.read())
+
+title     = yt["title"]
+image_url = yt["thumbnailUrl"]
+print(f"📺 {title}")
+print(f"🖼  {image_url}")
+
+# ── Step 2: Render PNG with YouTube layout ────────────────────────────────
+params = urllib.parse.urlencode({
+    "network":   BRAND,
+    "title":     title,
+    "subtitle":  f"via {yt['channelName']} on YouTube",
+    "image_url": image_url,
+    "layout":    LAYOUT,
+    "accent":    ACCENT,
+    "overlay":   OVERLAY,
+})
+
+with urllib.request.urlopen(f"{SATORI_BASE}/api/v1/generate?{params}") as resp:
+    png_bytes = resp.read()
+
+os.makedirs("public/thumbnails", exist_ok=True)
+with open(OUT_PATH, "wb") as f:
+    f.write(png_bytes)
+
+print(f"✅ Saved: {OUT_PATH} ({len(png_bytes)//1024} KB)")
+```
+
+#### Extracting the video ID from a URL
+
+If you need to construct YouTube thumbnail URLs yourself without the API, use the `extractYoutubeId()` helper pattern:
+
+```python
+import re
+
+YT_ID_RE = r'(?:youtube\.com/(?:watch\?v=|shorts/|embed/)|youtu\.be/)([a-zA-Z0-9_-]{11})'
+
+def extract_youtube_id(url: str) -> str | None:
+    m = re.search(YT_ID_RE, url)
+    return m.group(1) if m else None
+
+# Then build the URL directly:
+# https://img.youtube.com/vi/{id}/maxresdefault.jpg
+# https://img.youtube.com/vi/{id}/hqdefault.jpg
+```
+
+#### Importing a YouTube video via Quick Import
+
+1. Copy any YouTube URL (watch, shorts, embed, or youtu.be)
+2. Paste it into the **Quick Import** bar at the top of the Editor tab
+3. Click **Import**
+4. Satori automatically:
+   - Sets the headline to the video title
+   - Sets the subtitle to `"via Channel Name on YouTube"`
+   - Switches the layout to **YouTube** (1280×720)
+   - Creates a base layer from the best available thumbnail
+
+#### Loading YouTube frames in the Content tab
+
+For more control, use the Content tab:
+
+1. Switch to **🎬 Content** tab
+2. Paste the YouTube URL in the **Screenshot from URL** field
+3. Click **Load**
+4. All 5 frame variants appear in the image source grid below
+
+#### Copyright note
+
+> YouTube thumbnails are copyrighted by the video creator. Using them as-is in your article's OG image may constitute infringement. Satori encourages using them as a **base layer** for transformation — combine with text overlays, brand logo, gradient overlays, and FLUX enhancement to create a substantially new work.
+
+---
+
+### 🧅 Layered Image Editor — Drag-and-Drop Style Layer Stack
+
+The Content tab now includes a layered image compositing system inspired by Canva and Photoshop. Instead of picking a single background image, you can stack multiple images as layers with per-layer opacity, visibility, and z-ordering.
+
+#### Layer controls
+
+Each layer in the stack has:
+
+| Control | What it does |
+|---|---|
+| 👁 Visibility toggle | Show or hide the layer without deleting it |
+| Opacity slider | 0–100% — fade layers in/out for blends |
+| ▲ Move up | Send the layer forward (higher z-index) |
+| ▼ Move down | Send the layer backward (lower z-index) |
+| ✕ Delete | Remove the layer from the stack |
+| Thumbnail | Visual preview at current opacity |
+
+#### Building a composite
+
+1. Switch to the **🎬 Content** tab
+2. Load images via YouTube URL, **Find Images** search, or game screenshots
+3. Click any image in the **Image Sources** grid — it becomes a new layer
+4. In the **🧅 Layers** panel:
+   - Drag opacity sliders to blend layers together
+   - Use ▲/▼ to reorder (top of stack = frontmost)
+   - Toggle visibility on/off
+5. The first layer added is set as the main `image_url` — subsequent layers are composited on top
+6. Switch back to the **Editor** tab to see your composite in the live preview
+
+#### Layer states
+
+| Badge | Meaning |
+|---|---|
+| 🟣 Purple "L" badge | Image is in the layer stack |
+| 🟢 Cyan checkmark | Image is the current base layer |
+| Greyed-out text | Layer is hidden (visibility off) |
+
+#### Clear all layers
+
+Click **Clear all layers** at the bottom of the layer stack to reset. This also resets `image_url` to empty.
+
+> **Note:** The layer compositing happens client-side in the editor. When you click **Publish Thumbnail** or **Save Override**, only the base `image_url` is sent to the Satori renderer. For true multi-layer PNG output, use the Mint/Enhance (FLUX) button to bake all layers into a single image first.
+
+---
+
 ### Custom Accent Colour
 
 Every brand has a default accent colour but you can override it per-thumbnail in the **Advanced** section of the sidebar.
@@ -502,7 +701,7 @@ Returns: raw PNG bytes (save to `public/thumbnails/{slug}.jpg`)
 | `title` | Yes | URL-encoded headline |
 | `subtitle` | — | URL-encoded deck text |
 | `image_url` | — | URL from `quick-generate` Step 1 |
-| `layout` | — | `cinematic`, `breaking`, `standard`, `minimal` |
+| `layout` | — | `cinematic`, `breaking`, `standard`, `minimal`, `youtube`, `social` |
 | `accent` | — | 6-digit hex e.g. `%2300d4ff` (URL-encode the `#`) |
 | `overlay` | — | `0`–`100`, default `100` — use `75`–`85` |
 
@@ -510,6 +709,17 @@ Returns: raw PNG bytes (save to `public/thumbnails/{slug}.jpg`)
 ```bash
 curl "https://www.fshot.one/api/v1/og?network=ozone&slug=my-article-slug"
 ```
+
+### Fetch YouTube video metadata + frames
+```
+POST /api/v1/fetch-youtube
+Content-Type: application/json
+
+{ "url": "https://www.youtube.com/watch?v=sR6B5x6EAN8" }
+```
+Returns: `{ videoId, title, channelName, thumbnailUrl, frames: { maxres, hq, sd, mq, frame1, frame2, frame3 }, allFrameUrls, frameLabels }`
+
+No authentication required. Uses YouTube's free oEmbed API and direct `img.youtube.com` URLs.
 
 ### Preview in browser
 ```

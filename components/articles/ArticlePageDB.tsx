@@ -20,6 +20,8 @@ import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { ArticlePage, TableOfContents } from './ArticlePage';
 import { ContentRenderer } from './ContentRenderer';
+import { SourcesInterlink } from './SourcesInterlink';
+import type { Citation } from '@/lib/types';
 
 const STATIC_DIR = path.join(process.cwd(), 'content', 'static', 'article_pages');
 
@@ -100,6 +102,12 @@ export async function ArticlePageDB({ slug }: ArticlePageDBProps) {
         <TableOfContents items={row.table_of_contents} />
       )}
       <ContentRenderer html={row.content_html ?? ''} />
+      {Array.isArray(row.citations) && row.citations.length > 0 && (
+        <SourcesInterlink
+          citations={row.citations as Citation[]}
+          heading="References"
+        />
+      )}
     </ArticlePage>
   );
 }

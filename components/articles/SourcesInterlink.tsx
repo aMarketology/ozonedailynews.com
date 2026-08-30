@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import type { Citation } from '@/lib/types';
 
 // =============================================================================
 // SOURCES INTERLINK COMPONENT
@@ -70,6 +71,7 @@ export interface InternalLinkItem {
 export interface SourcesInterlinkProps {
   sources?: SourceItem[];
   internalLinks?: InternalLinkItem[];
+  citations?: Citation[]; // New prop for citations
   heading?: string;
   accentColor?: 'blue' | 'green' | 'orange' | 'purple' | 'red' | 'gray';
 }
@@ -112,6 +114,7 @@ function getDomain(url: string): string {
 export function SourcesInterlink({
   sources = [],
   internalLinks = [],
+  citations = [], // Destructure new prop
   heading = 'Sources',
   accentColor = 'blue',
 }: SourcesInterlinkProps) {
@@ -119,7 +122,18 @@ export function SourcesInterlink({
   const textClass   = ACCENT_TEXT[accentColor]   ?? ACCENT_TEXT.blue;
   const pillClass   = ACCENT_PILL[accentColor]   ?? ACCENT_PILL.blue;
 
-  if (!sources.length && !internalLinks.length) return null;
+  // Convert citations prop to sources if available
+  const combinedSources: SourceItem[] = citations.map((citation, index) => ({
+    number: index + 1,
+    url: citation.url,
+    title: citation.title,
+    author: citation.publisher,
+    date: citation.datePublished,
+  }));
+
+  const allSources: SourceItem[] = [...combinedSources, ...sources];
+
+  if (!allSources.length && !internalLinks.length) return null;
 
   return (
     <div className={`mt-12 border-t-2 ${borderClass} pt-6 not-prose text-gray-900 dark:text-gray-100`}>
@@ -128,9 +142,9 @@ export function SourcesInterlink({
       <h2 className="text-xl font-bold mb-4">{heading}</h2>
 
       {/* External sources — clean numbered list, blue underlined links */}
-      {sources.length > 0 && (
+      {allSources.length > 0 && (
         <ol className="list-none pl-0 space-y-2 mb-8 text-sm leading-relaxed">
-          {sources.map((src) => (
+          {allSources.map((src) => (
             <li
               key={src.number}
               id={`source-${src.number}`}

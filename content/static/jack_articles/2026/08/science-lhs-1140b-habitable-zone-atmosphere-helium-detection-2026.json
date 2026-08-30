@@ -27,10 +27,10 @@
     "department": "Science"
   },
   "read_time": "8 min read",
-  "thumbnail_src": "[FILL: /thumbnails/science-lhs-1140b-habitable-zone-atmosphere-helium-detection-2026.jpg]",
+  "thumbnail_src": "/thumbnails/science-lhs-1140b-habitable-zone-atmosphere-helium-detection-2026.jpg",
   "thumbnail_alt": "Artist rendering of super-Earth LHS 1140b orbiting its red dwarf star with a glowing atmospheric halo",
   "hero_image": {
-    "src": "[FILL: https://www.ozonedailynews.com/thumbnails/science-lhs-1140b-habitable-zone-atmosphere-helium-detection-2026.jpg]",
+    "src": "https://www.ozonedailynews.com/thumbnails/science-lhs-1140b-habitable-zone-atmosphere-helium-detection-2026.jpg",
     "alt": "Artist rendering of super-Earth LHS 1140b orbiting its red dwarf star with a glowing atmospheric halo"
   },
   "tags": [
@@ -161,7 +161,7 @@
       "description": "Astronomers confirm helium escaping from LHS 1140b, the first atmosphere detected on a rocky exoplanet orbiting within its star's habitable zone.",
       "images": [
         {
-          "url": "[FILL: https://www.ozonedailynews.com/thumbnails/science-lhs-1140b-habitable-zone-atmosphere-helium-detection-2026.jpg]",
+          "url": "https://www.ozonedailynews.com/thumbnails/science-lhs-1140b-habitable-zone-atmosphere-helium-detection-2026.jpg",
           "width": 1200,
           "height": 675,
           "alt": "Artist rendering of super-Earth LHS 1140b orbiting its red dwarf star with a glowing atmospheric halo"
