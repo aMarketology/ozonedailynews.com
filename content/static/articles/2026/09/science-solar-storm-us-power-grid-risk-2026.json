@@ -1,0 +1,87 @@
+{
+  "slug": "science-solar-storm-us-power-grid-risk-2026",
+  "url": "https://www.ozonedailynews.com/science/solar-storm-us-power-grid-risk-2026",
+  "article_type": "news_article",
+  "title": "Here Is Where a Massive Solar Storm Could Take Down the US Power Grid",
+  "subtitle": "New research maps the vulnerability of America's electrical infrastructure to extreme space weather, revealing which regions face the highest risk of prolonged blackouts from a major solar storm.",
+  "category": "Science",
+  "status": "published",
+  "breaking": true,
+  "trending": true,
+  "lifecycle": "news",
+  "topic_tag": "science",
+  "published_at": "2026-09-05T14:00:00-05:00",
+  "publish_date": "September 5, 2026",
+  "author_name": "Anderea Redwood",
+  "author_slug": "simon-minter",
+  "author_role": "Energy Correspondent",
+  "read_time": "7 min read",
+  "thumbnail_src": "/thumbnails/science-solar-storm-us-power-grid-risk-2026.jpg",
+  "thumbnail_alt": "Solar storm visualization with Earth and power grid infrastructure showing geomagnetic disturbance risk zones",
+  "tags": [
+    "Solar Storm",
+    "Power Grid",
+    "Geomagnetic Disturbance",
+    "Space Weather",
+    "Carrington Event",
+    "Critical Infrastructure",
+    "EMP Risk",
+    "Electrical Grid Vulnerability"
+  ],
+  "citations": [
+    {
+      "title": "Here's where a massive solar storm could take down the US power grid",
+      "url": "https://www.cnn.com/2026/09/04/climate/solar-storm-power-grid-risk-map",
+      "publisher": "CNN",
+      "datePublished": "2026-09-04"
+    },
+    {
+      "title": "The Economic Costs of Solar Storms",
+      "url": "https://eos.org/articles/the-economic-costs-of-solar-storms",
+      "publisher": "Eos",
+      "datePublished": "2026-09-04"
+    },
+    {
+      "title": "Alaska researcher finds extreme solar storms could pack an even bigger punch",
+      "url": "https://www.peninsulaclarion.com/news/alaska-researcher-extreme-solar-storms-bigger-punch",
+      "publisher": "Peninsula Clarion",
+      "datePublished": "2026-09-05"
+    },
+    {
+      "title": "Solar storm study maps U.S. power grid risk, daily losses",
+      "url": "https://qz.com/solar-storm-study-maps-us-power-grid-risk-daily-losses",
+      "publisher": "Quartz",
+      "datePublished": "2026-09-04"
+    }
+  ],
+  "metadata": {
+    "title": "Solar Storm US Power Grid Risk | Geomagnetic Disturbance Map",
+    "description": "New research maps the vulnerability of America's electrical infrastructure to extreme space weather, revealing which regions face the highest risk of prolonged blackouts from a major solar storm.",
+    "keywords": [
+      "solar storm US power grid risk",
+      "geomagnetic disturbance power grid vulnerability",
+      "Carrington event modern infrastructure",
+      "space weather electrical grid collapse",
+      "solar storm economic cost daily losses",
+      "critical infrastructure solar storm protection",
+      "US power grid solar storm risk map",
+      "extreme space weather blackout risk"
+    ],
+    "alternates": {
+      "canonical": "https://www.ozonedailynews.com/science/solar-storm-us-power-grid-risk-2026"
+    },
+    "openGraph": {
+      "title": "Solar Storm US Power Grid Risk | Geomagnetic Disturbance Map",
+      "description": "New research maps the vulnerability of America's electrical infrastructure to extreme space weather, revealing which regions face the highest risk of prolonged blackouts from a major solar storm.",
+      "images": [
+        {
+          "url": "https://www.ozonedailynews.com/thumbnails/science-solar-storm-us-power-grid-risk-2026.jpg",
+          "width": 1200,
+          "height": 675,
+          "alt": "Solar storm power grid risk visualization"
+        }
+      ]
+    }
+  },
+  "content_html": "<DirectAnswer answer=\"New research published across multiple scientific outlets has mapped the vulnerability of the United States power grid to extreme solar storms, identifying the Mid-Atlantic, Pacific Northwest, and Upper Midwest as regions at highest risk of prolonged blackouts. A Carrington-class solar storm, which occurs roughly once every 150 years, could induce geomagnetic currents strong enough to damage or destroy hundreds of high-voltage transformers across the country, potentially causing regional blackouts lasting weeks or months. The studies estimate daily economic losses from a major grid-disrupting solar event could reach into the tens of billions of dollars, with recovery timelines stretching years for the hardest-hit regions.\" />\n\n<KeyTakeaways items={[\"New research maps US power grid vulnerability to extreme solar storms, identifying the Mid-Atlantic, Pacific Northwest, and Upper Midwest as highest-risk regions for prolonged blackouts.\",\"A Carrington-class solar storm, occurring roughly once every 150 years, could induce geomagnetic currents strong enough to damage or destroy hundreds of high-voltage transformers across the country.\",\"Daily economic losses from a major grid-disrupting solar event could reach tens of billions of dollars, with recovery timelines stretching years for the hardest-hit regions.\",\"Alaska researchers have found that extreme solar storms could pack an even bigger punch than previously modeled, with potential for stronger geomagnetic induced currents in high-latitude infrastructure.\",\"The studies highlight a critical gap in US infrastructure preparedness, with many high-risk transformers lacking the protective equipment needed to withstand a severe geomagnetic disturbance.\"]} />\n\n<p>The same solar outburst that paints spectacular auroras across the night sky also carries a darker threat: the potential to bring America's electrical grid to its knees. New research published across multiple scientific outlets has mapped the vulnerability of the United States power grid to extreme solar storms with unprecedented precision, identifying the regions most likely to face prolonged blackouts when the next major space weather event arrives.</p>\n\n<p>Reported by <a href=\"https://www.cnn.com/2026/09/04/climate/solar-storm-power-grid-risk-map\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 underline\">CNN</a>, <a href=\"https://eos.org/articles/the-economic-costs-of-solar-storms\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 underline\">Eos</a>, and <a href=\"https://qz.com/solar-storm-study-maps-us-power-grid-risk-daily-losses\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 underline\">Quartz</a>, the converging studies paint a sobering picture of critical infrastructure vulnerability to space weather, a threat that has historically received far less attention than hurricanes, earthquakes, or cyberattacks.</p>\n\n<h2>The Carrington-Class Threat | A 150-Year Recurrence</h2>\n\n<p>The benchmark for extreme space weather events remains the <strong>Carrington Event of 1859</strong>, a solar storm so powerful that it set telegraph wires on fire and created auroras visible as far south as Cuba and Mexico. In the 167 years since, Earth has experienced several close calls, including the 1989 Quebec blackout that knocked out the province's entire power grid for nine hours, and the 2012 solar storm that narrowly missed Earth, passing through its orbit where the planet had been just one week earlier.</p>\n\n<p>A Carrington-class event today would interact with a fundamentally different world. The 1859 telegraph network has been replaced by a continent-spanning electrical grid with more than 200,000 high-voltage transformers, a satellite infrastructure worth hundreds of billions of dollars, and a communications network that underpins every aspect of modern life. The new research models what happens when that infrastructure meets a storm of comparable magnitude.</p>\n\n<p>The studies identify the <strong>Mid-Atlantic region</strong>, the <strong>Pacific Northwest</strong>, and the <strong>Upper Midwest</strong> as the areas at highest risk. These regions sit atop geological formations that conduct geomagnetic induced currents (GICs) more efficiently, effectively funneling the electrical disturbance into the transformers that serve millions of customers. A single large transformer can take 12 to 24 months to replace, and many are custom-built with no readily available spares.</p>\n\n<CitationBlock question=\"Which US regions are at highest risk from a major solar storm?\" answer=\"The Mid-Atlantic region, Pacific Northwest, and Upper Midwest face the highest risk of prolonged blackouts from a Carrington-class solar storm. These regions sit atop geological formations that conduct geomagnetic induced currents more efficiently, funneling electrical disturbances into high-voltage transformers that can take 12 to 24 months to replace.\" type=\"stat\" stat=\"3 regions\" statLabel=\"Highest-risk areas identified in new research\" source=\"CNN, September 2026\" sourceUrl=\"https://www.cnn.com/2026/09/04/climate/solar-storm-power-grid-risk-map\" />\n\n<h2>The Economic Toll | Billions Per Day</h2>\n\n<p>The economic consequences of a major solar storm have been notoriously difficult to estimate, in part because no modern economy has experienced a Carrington-class event. The new research, covered by <a href=\"https://eos.org/articles/the-economic-costs-of-solar-storms\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 underline\">Eos</a>, provides some of the most detailed projections to date, modeling daily losses across multiple sectors including transportation, finance, healthcare, and manufacturing.</p>\n\n<p>The estimates are staggering. A major grid-disrupting solar event could cause daily economic losses reaching into the <strong>tens of billions of dollars</strong>, with the hardest-hit regions facing recovery timelines measured in years rather than months. The cascading effects of a prolonged blackout would extend far beyond the directly affected areas, as supply chains, financial systems, and emergency services all depend on continuous electrical power.</p>\n\n<p>Alaska researchers, as reported by the <a href=\"https://www.peninsulaclarion.com/news/alaska-researcher-extreme-solar-storms-bigger-punch\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 underline\">Peninsula Clarion</a>, have found that extreme solar storms could pack an even bigger punch than previously modeled. High-latitude infrastructure, including the electrical grids serving Alaska and northern Canada, may experience stronger geomagnetic induced currents than standard models predict, suggesting that the threat to northern power infrastructure may be significantly underestimated.</p>\n\n<CitationBlock question=\"What are the estimated economic costs of a major solar storm?\" answer=\"Daily economic losses from a major grid-disrupting solar event could reach tens of billions of dollars, with recovery timelines stretching years for the hardest-hit regions. Alaska researchers have found that high-latitude infrastructure may experience stronger geomagnetic induced currents than previously modeled, suggesting the threat to northern power grids is significantly underestimated.\" type=\"stat\" stat=\"$10B+\" statLabel=\"Estimated daily economic losses from a major solar storm\" source=\"Eos / Quartz, September 2026\" sourceUrl=\"https://eos.org/articles/the-economic-costs-of-solar-storms\" />\n\n<h2>The Preparedness Gap | What Can Be Done</h2>\n\n<p>The research highlights a critical gap in US infrastructure preparedness. While the electric power industry has made significant strides in recent years, including the deployment of monitoring equipment and the development of mitigation strategies, many high-risk transformers still lack the protective equipment needed to withstand a severe geomagnetic disturbance.</p>\n\n<p>Mitigation strategies fall into several categories. <strong>Transformer-level protection</strong> includes devices that block or divert geomagnetic induced currents before they reach sensitive windings. <strong>System-level protection</strong> involves operational procedures such as reducing grid load during a storm to give transformers more headroom. <strong>Strategic stockpiling</strong> of spare transformers, while expensive, could dramatically reduce recovery times. The studies suggest that a coordinated federal investment in grid hardening could reduce the economic impact of a major solar storm by an order of magnitude.</p>\n\n<p>The threat is not hypothetical. The sun follows an approximately 11-year activity cycle, and the current cycle, Solar Cycle 25, has been more active than forecasters predicted. Several close calls in recent decades, including the 2012 storm that missed Earth and the 2017 storm that caused airline rerouting and communications disruptions, serve as reminders that the next Carrington-class event is a matter of when, not if.</p>\n\n<p>As the research community continues to refine its models and the power industry continues to harden its infrastructure, the question is no longer whether a major solar storm will hit Earth, but whether the grid will be ready when it does. The new studies provide the most detailed roadmap yet of where the risks are highest and what must be done to address them.</p>\n\n<h2>Frequently Asked Questions</h2>\n\n<FAQAccordion items={[{\"question\":\"What is a Carrington-class solar storm?\",\"answer\":\"A Carrington-class solar storm is an extreme space weather event comparable to the 1859 Carrington Event, the most powerful solar storm in recorded history. Such storms occur roughly once every 150 years and can induce geomagnetic currents strong enough to damage high-voltage transformers and cause widespread power grid failures.\"},{\"question\":\"Which US regions are most vulnerable to solar storm blackouts?\",\"answer\":\"New research identifies the Mid-Atlantic region, Pacific Northwest, and Upper Midwest as the areas at highest risk. These regions sit atop geological formations that conduct geomagnetic induced currents more efficiently, funneling electrical disturbances into critical transformers.\"},{\"question\":\"How long would it take to recover from a major solar storm blackout?\",\"answer\":\"Recovery timelines vary by region but could stretch from weeks to years for the hardest-hit areas. High-voltage transformers can take 12 to 24 months to replace, and many are custom-built with no readily available spares. Cascading supply chain disruptions would extend recovery times further.\"},{\"question\":\"What can be done to protect the power grid from solar storms?\",\"answer\":\"Mitigation strategies include transformer-level protection devices that block geomagnetic currents, system-level operational procedures to reduce grid load during storms, and strategic stockpiling of spare transformers. Studies suggest coordinated federal investment could reduce economic impact by an order of magnitude.\"},{\"question\":\"How likely is a major solar storm in the near future?\",\"answer\":\"The sun follows an approximately 11-year activity cycle, and Solar Cycle 25 has been more active than forecasters predicted. While the exact timing cannot be predicted, a Carrington-class event is statistically expected roughly once every 150 years, and several close calls in recent decades suggest the next major storm is a matter of when, not if.\"}]} />\n\n<SourcesInterlink sources={[{\"number\":1,\"url\":\"https://www.cnn.com/2026/09/04/climate/solar-storm-power-grid-risk-map\",\"title\":\"Here's where a massive solar storm could take down the US power grid\",\"author\":\"CNN\",\"date\":\"September 4, 2026\"},{\"number\":2,\"url\":\"https://eos.org/articles/the-economic-costs-of-solar-storms\",\"title\":\"The Economic Costs of Solar Storms\",\"author\":\"Eos\",\"date\":\"September 4, 2026\"},{\"number\":3,\"url\":\"https://www.peninsulaclarion.com/news/alaska-researcher-extreme-solar-storms-bigger-punch\",\"title\":\"Alaska researcher finds extreme solar storms could pack an even bigger punch\",\"author\":\"Peninsula Clarion\",\"date\":\"September 5, 2026\"},{\"number\":4,\"url\":\"https://qz.com/solar-storm-study-maps-us-power-grid-risk-daily-losses\",\"title\":\"Solar storm study maps U.S. power grid risk, daily losses\",\"author\":\"Quartz\",\"date\":\"September 4, 2026\"}]} internalLinks={[{\"href\":\"/science/nasa-roman-space-telescope-falcon-heavy-launch-2026\",\"label\":\"Roman Space Telescope Falcon Heavy Launch\"},{\"href\":\"/science/lux-zeplin-dark-matter-signal-2026\",\"label\":\"LUX-ZEPLIN Dark Matter Signal\"},{\"href\":\"/science/centaur-450p-loneos-comet-transformation-jwst-2026\",\"label\":\"Birth of a Comet | Centaur 450P/LONEOS\"},{\"href\":\"/science/quantum-equivalence-principle-free-fall-test-2026\",\"label\":\"Einstein in the Microcosm | Quantum Equivalence\"}]} />\n\n<p>As one researcher noted in the Eos report: \"We know a Carrington-class event will happen again. The question is whether our infrastructure will be ready when it does.\" The new studies provide the most detailed roadmap yet of where the risks are highest and what must be done to address them.</p>"
+}

@@ -10,6 +10,7 @@
     "lint": "eslint",
     "alfasa": "npx ts-node --project tsconfig.scripts.json scripts/alfasa-suggest.ts",
     "alfanso": "npx ts-node --project tsconfig.scripts.json scripts/alfanso.ts",
+    "last": "npx ts-node --project tsconfig.scripts.json scripts/last-articles.ts",
     "alfanso:sync": "npx ts-node --project tsconfig.scripts.json scripts/sync-registry.ts --write",
     "validate:static": "npx ts-node --project tsconfig.scripts.json scripts/validate-static-articles.ts",
     "wiki:sync": "npx ts-node --project tsconfig.scripts.json scripts/sync-registry.ts",

@@ -2,10 +2,12 @@ import Link from "next/link";
 import React from "react";
 import ArticleViewTracker from '@/components/articles/ArticleViewTracker';
 import RelatedArticles from '@/components/discovery/RelatedArticles';
+import { RelatedCarousel } from '@/components/discovery/RelatedCarousel';
 import ArticleFooter from '@/components/articles/ArticleFooter';
 import { HubBacklink } from '@/components/HubBacklink';
 import ArticleTOC from '@/components/articles/ArticleTOC';
 import BookFlipReader from '@/components/articles/BookFlipReader';
+import { ReadingProgress } from '@/components/articles/ReadingProgress';
 import { Breadcrumb } from '@/components/nav/Breadcrumb';
 import type { BreadcrumbItem } from '@/components/nav/Breadcrumb';
 import FAQAccordion, { FAQSchema } from '@/components/FAQAccordion';
@@ -708,6 +710,9 @@ export function NewsArticle({
 }: NewsArticleProps) {
   return (
     <main className="min-h-screen bg-white dark:bg-gray-950">
+      {/* Floating reading progress tracker */}
+      <ReadingProgress />
+
       {/* Record view in reading history (localStorage for everyone, server for signed-in users) */}
       {slug && url && (
         <ArticleViewTracker
@@ -805,7 +810,7 @@ export function NewsArticle({
           <aside>
             <div className="sticky top-6">
               <HubBacklink category={category} topicTag={topicTag} />
-              <RelatedArticles
+              <RelatedCarousel
                 currentSlug={slug ?? ''}
                 category={category}
                 tags={tags}
